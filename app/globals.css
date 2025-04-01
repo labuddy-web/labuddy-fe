@@ -45,5 +45,13 @@ body {
 
 .text-labuddy {
   background: var(--color-labuddy);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.border-labuddy {
+  border-width: 4px;
+  border-style: solid;
+  border-image-source: var(--color-labuddy);
+  border-image-slice: 1;
 }

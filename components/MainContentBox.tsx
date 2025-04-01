@@ -5,7 +5,7 @@ interface MainContentBoxProps {
   content: ReactNode;
 }
 
-const MainContentBox = ({ title, content }: MainContentBoxProps) => {
+export const MainContentBox = ({ title, content }: MainContentBoxProps) => {
   return (
     <div className="flex flex-col h-auto justify-center items-center gap-[20px] text-center">
       <svg
@@ -28,4 +28,11 @@ const MainContentBox = ({ title, content }: MainContentBoxProps) => {
   );
 };
 
-export default MainContentBox;
+export const MissionContentBox = ({ title, content }: MainContentBoxProps) => {
+  return (
+    <div className="flex flex-col h-auto justify-center items-center gap-[20px] text-center">
+      <p className="text-lg font-medium">{title}</p>
+      <p className="text-sm font-light">{content}</p>
+    </div>
+  );
+};

@@ -2,7 +2,7 @@ import { FileInput, Label } from "flowbite-react";
 
 const MainSection = () => {
   return (
-    <section className="flex w-full h-[884px] bg-labuddy px-[320px] text-white flex-col justify-center items-center gap-[120px]">
+    <section className="flex w-full h-[800px] bg-labuddy px-[320px] text-white flex-col justify-center items-center gap-[120px]">
       <div className="flex flex-col justify-center items-center gap-[20px]">
         <div className="flex flex-col justify-center items-center ">
           <p className="font-bold text-4xl">LabBuddy</p>

@@ -5,7 +5,7 @@ interface ContentItem {
   content: ReactNode;
 }
 
-const contentList: ContentItem[] = [
+export const contentList: ContentItem[] = [
   {
     title: <p>Did you know?</p>,
     content: (
@@ -62,4 +62,21 @@ const contentList: ContentItem[] = [
   },
 ];
 
-export default contentList;
+export const ourMission: ContentItem = {
+  title: <p className="text-xl font-semibold">Our Mission</p>,
+  content: (
+    <p className="text-lg font-semibold">
+      We empower researchers to focus on what matters — their research.
+      <br />
+      By minimizing unnecessary tasks, we aim to accelerate scientific progress.
+    </p>
+  ),
+};
+
+export const footer: ReactNode = (
+  <p>
+    Get Started Now
+    <br />
+    Research smarter. Find reagents and equipment faster.
+  </p>
+);

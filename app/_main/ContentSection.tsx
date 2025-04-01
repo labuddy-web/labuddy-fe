@@ -1,5 +1,5 @@
-import MainContentBox from "@/components/MainContentBox";
-import contentList from "./contentData";
+import { MainContentBox, MissionContentBox } from "@/components/MainContentBox";
+import { contentList, ourMission, footer } from "./contentData";
 
 const ContentSection = () => {
   return (
@@ -7,6 +7,15 @@ const ContentSection = () => {
       {contentList.map((item, index) => (
         <MainContentBox key={index} title={item.title} content={item.content} />
       ))}
+      <div className="flex w-full h-auto border-4 rounded-xl border-labuddy py-[40px] justify-center items-center">
+        <MissionContentBox
+          title={ourMission.title}
+          content={ourMission.content}
+        />
+      </div>
+      <div className="text-3xl text-labuddy font-extrabold text-center">
+        {footer}
+      </div>
     </section>
   );
 };
