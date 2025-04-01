@@ -62,10 +62,10 @@ const config: Config = {
         50: "#199A73",
       },
       yellow: {
-        50: "FCC45A",
+        50: "#FCC45A",
       },
       blue: {
-        50: "5479FE",
+        50: "#5479FE",
       },
     },
 
@@ -87,6 +87,9 @@ const config: Config = {
       fontFamily: {
         pretendard: ["pretendard"],
         mustica: ["mustica pro"],
+      },
+      backgroundImage: {
+        labuddy: "linear-gradient(to right, #5479FE, #FCC45A)", // blue to yellow
       },
     },
   },
