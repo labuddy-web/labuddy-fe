@@ -63,9 +63,9 @@ export const contentList: ContentItem[] = [
 ];
 
 export const ourMission: ContentItem = {
-  title: <p className="text-xl font-semibold">Our Mission</p>,
+  title: <p className="font-semibold">Our Mission</p>,
   content: (
-    <p className="text-lg font-semibold">
+    <p className="font-semibold">
       We empower researchers to focus on what matters — their research.
       <br />
       By minimizing unnecessary tasks, we aim to accelerate scientific progress.

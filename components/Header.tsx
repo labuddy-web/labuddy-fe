@@ -3,8 +3,10 @@ import labuddy_logo from "@/public/logo.svg";
 
 const Header = () => {
   return (
-    <div className="w-full h-[84px] bg-white flex items-center justify-between px-[320px]">
-      <Image src={labuddy_logo} alt="logo" width={172} height={40} />
+    <div className="w-full h-[84px] bg-white flex items-center justify-between px-[32px] lg:px-[120px] xl:px-[320px]">
+      <a href={"/"}>
+        <Image src={labuddy_logo} alt="logo" width={172} height={40} />
+      </a>
       <button className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black">
         <svg
           xmlns="http://www.w3.org/2000/svg"
