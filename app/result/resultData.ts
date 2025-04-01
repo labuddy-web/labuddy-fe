@@ -37,6 +37,12 @@ export const rows: Row[] = [
     reagent: "Community Manager",
     catalog: "Vacation",
   },
+  {
+    key: "5",
+    company: "William Howard",
+    reagent: "Community Manager",
+    catalog: "Vacation",
+  },
 ];
 
 export const columns: Column[] = [
