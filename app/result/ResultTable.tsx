@@ -97,11 +97,11 @@ const ResultTable = () => {
       </div>
       <div className="relative w-full h-auto text-center">
         {/* login 유도 blur */}
-        <Link href={"/login"}>
-          <div
-            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0"
-            style={{ minHeight: tableHeight }}
-          >
+        <div
+          className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0"
+          style={{ minHeight: tableHeight }}
+        >
+          <Link href={"/login"}>
             <button className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]">
               <p>
                 Sign up in just 3 seconds
@@ -110,9 +110,9 @@ const ResultTable = () => {
               </p>
               <ArrowRightIcon />
             </button>
-            <div className="absolute flex z-50 w-full h-full bg-white blur-sm" />
-          </div>
-        </Link>
+          </Link>
+          <div className="absolute flex z-50 w-full h-full bg-white blur-sm" />
+        </div>
 
         {/* Table */}
         <div ref={tableRef}>
