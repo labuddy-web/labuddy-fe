@@ -62,6 +62,9 @@ const MainSection = () => {
         console.log("검색 성공", response.data);
 
         // 결과를 localStorage에 저장
+        localStorage.setItem("sessionId", JSON.stringify(sessionId));
+
+        // 결과를 localStorage에 저장
         localStorage.setItem(
           "searchResults",
           JSON.stringify(response.data.results)
