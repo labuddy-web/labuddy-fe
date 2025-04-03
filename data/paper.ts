@@ -1,18 +1,17 @@
 export interface Paper {
   paper_name: string;
   session_id: string;
-  results: { company: string; reagent: string; catalog: string }[];
+  results: PaperInfo[];
 }
 
-interface Row {
-  key: string;
+export interface PaperInfo {
   company: string;
   reagent: string;
   catalog: string;
 }
 
 interface Column {
-  key: keyof Row;
+  key: keyof PaperInfo;
   label: string;
 }
 

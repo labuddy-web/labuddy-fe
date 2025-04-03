@@ -14,14 +14,16 @@ import {
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import { authInstance } from "@/api/axios";
 import Link from "next/link";
-import { columns } from "@/data/paper";
+import { columns, PaperInfo } from "@/data/paper";
+import { isLoggedInState } from "@/atoms/authAtom";
 
 const ResultTable = () => {
   const tableRef = useRef<HTMLTableElement>(null);
   const [tableHeight, setTableHeight] = useState(0);
 
   const [sessionId, setSessionId] = useState<string>();
-  const [results, setResults] = useState<string[]>([]);
+  const [results, setResults] = useState<PaperInfo[]>([]);
+  const [isValid, setIsValid] = useState<boolean>(true);
 
   useEffect(() => {
     // localStorage에서 검색 결과 불러오기
@@ -32,6 +34,12 @@ const ResultTable = () => {
       setSessionId(JSON.parse(storedSessionId));
     }
   }, []);
+
+  useEffect(() => {
+    if (results[0].company == "I am sorry") {
+      setIsValid(false);
+    }
+  }, [results]);
 
   // const [widths, setWidths] = useState<Record<string, number>>({});
 
@@ -97,22 +105,24 @@ const ResultTable = () => {
       </div>
       <div className="relative w-full h-auto text-center">
         {/* login 유도 blur */}
-        <div
-          className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0"
-          style={{ minHeight: tableHeight }}
-        >
-          <Link href={"/login"}>
-            <button className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]">
-              <p>
-                Sign up in just 3 seconds
-                <br />
-                <span className="font-bold">Get your results instantly.</span>
-              </p>
-              <ArrowRightIcon />
-            </button>
-          </Link>
-          <div className="absolute flex z-50 w-full h-full bg-white blur-sm" />
-        </div>
+        {!isLoggedInState && isValid && (
+          <div
+            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0"
+            style={{ minHeight: tableHeight }}
+          >
+            <Link href={"/login"}>
+              <button className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]">
+                <p>
+                  Sign up in just 3 seconds
+                  <br />
+                  <span className="font-bold">Get your results instantly.</span>
+                </p>
+                <ArrowRightIcon />
+              </button>
+            </Link>
+            <div className="absolute flex z-50 w-full h-full bg-white blur-sm" />
+          </div>
+        )}
 
         {/* Table */}
         <div ref={tableRef}>
@@ -132,7 +142,7 @@ const ResultTable = () => {
             </TableHeader>
             <TableBody items={results}>
               {(item) => (
-                <TableRow key={item} className="h-[60px]">
+                <TableRow key={item.company} className="h-[60px]">
                   {(columnKey) => (
                     <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                       {getKeyValue(item, columnKey)}
