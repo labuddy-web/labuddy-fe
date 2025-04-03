@@ -18,6 +18,16 @@ const ResultTable = () => {
   const tableRef = useRef<HTMLDivElement>(null);
   const [tableHeight, setTableHeight] = useState(0);
 
+  const [results, setResults] = useState<string[]>([]);
+
+  useEffect(() => {
+    // localStorage에서 검색 결과 불러오기
+    const storedResults = localStorage.getItem("searchResults");
+    if (storedResults) {
+      setResults(JSON.parse(storedResults));
+    }
+  }, []);
+
   useEffect(() => {
     if (tableRef.current) {
       setTableHeight(tableRef.current.clientHeight - 68);
@@ -66,9 +76,9 @@ const ResultTable = () => {
                 </TableColumn>
               )}
             </TableHeader>
-            <TableBody items={rows}>
+            <TableBody items={results}>
               {(item) => (
-                <TableRow key={item.key} className="h-[60px]">
+                <TableRow key={item} className="h-[60px]">
                   {(columnKey) => (
                     <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                       {getKeyValue(item, columnKey)}
