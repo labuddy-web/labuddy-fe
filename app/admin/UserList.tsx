@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { columns, User } from "@/data/user";
 import {
   Table,
   TableHeader,
@@ -9,9 +11,24 @@ import {
   TableCell,
   getKeyValue,
 } from "@heroui/table";
-import { columns, rows } from "./usersData";
 
 const UserList = () => {
+  const [userList, setUserList] = useState<User[]>([]);
+
+  useEffect(() => {
+    // localStorage에서 검색 결과 불러오기
+    const storedUserList = localStorage.getItem("userList");
+    if (storedUserList) {
+      try {
+        const parsedData = JSON.parse(storedUserList); // JSON 파싱
+        if (Array.isArray(parsedData)) {
+          setUserList(parsedData); // papers 배열을 상태로 저장
+        }
+      } catch (error) {
+        console.error("JSON 파싱 오류:", error);
+      }
+    }
+  }, []);
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
       <div className="relative w-full h-auto text-center">
@@ -30,9 +47,9 @@ const UserList = () => {
               </TableColumn>
             )}
           </TableHeader>
-          <TableBody items={rows}>
+          <TableBody items={userList}>
             {(item) => (
-              <TableRow key={item.key} className="h-[60px]">
+              <TableRow key={item.phone_number} className="h-[60px]">
                 {(columnKey) => (
                   <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                     {getKeyValue(item, columnKey)}
