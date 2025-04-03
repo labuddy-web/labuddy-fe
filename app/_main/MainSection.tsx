@@ -1,12 +1,14 @@
 "use client";
 
-import { axiosInstance } from "@/api/axios";
+import { authInstance, axiosInstance } from "@/api/axios";
 import UploadIcon from "@/components/icons/UploadIcon";
 import { Label } from "flowbite-react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const MainSection = () => {
   const [file, setFile] = useState<File | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (file) {
@@ -35,9 +37,10 @@ const MainSection = () => {
         headers: {},
       });
 
-      if (response.status == 201) {
+      if (response.status >= 200 && response.status < 300) {
         console.log("파일 업로드 성공", response.data);
         alert("파일 업로드 성공에 성공하였습니다.");
+        await handleSearch(response.data.session_id);
       } else {
         console.error("파일 업로드 실패:", response.statusText);
         alert("파일 업로드에 실패하였습니다.");
@@ -45,6 +48,36 @@ const MainSection = () => {
     } catch (error) {
       console.error("오류 발생:", error);
       alert("업로드 중 오류가 발생했습니다.");
+    }
+  };
+
+  const handleSearch = async (sessionId: string) => {
+    // `/searching` 페이지로 이동
+    router.push("/searching");
+
+    try {
+      const response = await authInstance.get(`/analyze/result/${sessionId}`);
+
+      if (response.status >= 200 && response.status < 300) {
+        console.log("검색 성공", response.data);
+
+        // 결과를 localStorage에 저장
+        localStorage.setItem(
+          "searchResults",
+          JSON.stringify(response.data.results)
+        );
+
+        // 3초 후 `/result` 페이지로 이동
+        setTimeout(() => {
+          router.push("/result");
+        }, 3000);
+      } else {
+        console.error("검색 실패:", response.statusText);
+        alert("검색 실패");
+      }
+    } catch (error) {
+      console.error("오류 발생:", error);
+      alert("검색 중 오류 발생");
     }
   };
 
