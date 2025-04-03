@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -9,17 +10,35 @@ import {
   TableCell,
   getKeyValue,
 } from "@heroui/table";
-import { papers } from "./papersData";
 import DownloadIcon from "@/components/icons/DownloadIcon";
+import { columns, Paper } from "@/data/paper";
 
 const PaperList = () => {
+  const [paperList, setPaperList] = useState<Paper[]>([]);
+
+  useEffect(() => {
+    // localStorage에서 검색 결과 불러오기
+    const storedPaperList = localStorage.getItem("paperList");
+    if (storedPaperList) {
+      try {
+        const parsedData = JSON.parse(storedPaperList); // JSON 파싱
+        if (Array.isArray(parsedData)) {
+          setPaperList(parsedData); // papers 배열을 상태로 저장
+        }
+      } catch (error) {
+        console.error("JSON 파싱 오류:", error);
+      }
+    }
+  }, []);
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
-      {papers.map((paper) => {
+      {paperList.map((paper) => {
         return (
-          <div key={paper.key} className="flex flex-col w-full">
+          <div key={paper.session_id} className="flex flex-col w-full">
             <div className="flex flex-row w-full justify-center items-center gap-[20px]">
-              <p className="text-lg md:text-2xl lg:text-3xl">{paper.title}</p>
+              <p className="text-lg md:text-2xl lg:text-3xl">
+                {paper.paper_name}
+              </p>
               <p className="cursor-pointer">
                 <DownloadIcon />
               </p>
@@ -30,7 +49,7 @@ const PaperList = () => {
                 aria-label="Example table with dynamic content"
                 className="relative w-full h-auto pt-[8px] px-[24px] pb-[24px] bg-white rounded-xl drop-shadow-xl"
               >
-                <TableHeader columns={paper.columns}>
+                <TableHeader columns={columns}>
                   {(column) => (
                     <TableColumn
                       key={column.key}
@@ -40,9 +59,9 @@ const PaperList = () => {
                     </TableColumn>
                   )}
                 </TableHeader>
-                <TableBody items={paper.rows}>
+                <TableBody items={paper.results}>
                   {(item) => (
-                    <TableRow key={item.key} className="h-[60px]">
+                    <TableRow key={item.company} className="h-[60px]">
                       {(columnKey) => (
                         <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                           {getKeyValue(item, columnKey)}

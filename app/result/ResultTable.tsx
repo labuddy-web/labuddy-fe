@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import DownloadIcon from "@/components/icons/DownloadIcon";
-import { columns, rows, title } from "./resultData";
 import {
   Table,
   TableHeader,
@@ -15,6 +14,7 @@ import {
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import { authInstance } from "@/api/axios";
 import Link from "next/link";
+import { columns } from "@/data/paper";
 
 const ResultTable = () => {
   const tableRef = useRef<HTMLTableElement>(null);
@@ -61,7 +61,7 @@ const ResultTable = () => {
     if (tableRef.current) {
       setTableHeight(tableRef.current.clientHeight - 68);
     }
-  }, [rows]);
+  }, []);
 
   const handleDownload = async () => {
     try {
@@ -89,7 +89,7 @@ const ResultTable = () => {
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
       <div className="flex flex-row w-full justify-center items-center gap-[20px]">
         <p className="text-lg md:text-2xl lg:text-3xl">
-          &quot;{title}&quot;에 대한 검색 결과
+          &quot;{sessionId}&quot;에 대한 검색 결과
         </p>
         <p className="cursor-pointer" onClick={handleDownload}>
           <DownloadIcon />
