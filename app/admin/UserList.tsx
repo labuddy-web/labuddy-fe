@@ -29,6 +29,7 @@ const UserList = () => {
       }
     }
   }, []);
+
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
       <div className="relative w-full h-auto text-center">

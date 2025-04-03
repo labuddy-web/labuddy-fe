@@ -30,6 +30,7 @@ const PaperList = () => {
       }
     }
   }, []);
+
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
       {paperList.map((paper) => {
