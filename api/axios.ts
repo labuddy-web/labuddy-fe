@@ -59,7 +59,7 @@ authInstance.interceptors.response.use(
         const refreshToken = await Cookie.get("access_token");
         // token refresh 요청
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/recreate`, // token refresh api
+          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/token`, // token refresh api
           { headers: { Authorization: `Bearer ${refreshToken}` } }
         );
         // 새로운 토큰 저장
