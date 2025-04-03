@@ -14,7 +14,7 @@ import {
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import { authInstance } from "@/api/axios";
 import Link from "next/link";
-import { columns, PaperInfo } from "@/data/paper";
+import { columns } from "@/data/paper";
 import { isLoggedInState } from "@/atoms/authAtom";
 
 const ResultTable = () => {
@@ -22,8 +22,9 @@ const ResultTable = () => {
   const [tableHeight, setTableHeight] = useState(0);
 
   const [sessionId, setSessionId] = useState<string>();
-  const [results, setResults] = useState<PaperInfo[]>([]);
-  const [isValid, setIsValid] = useState<boolean>(true);
+  const [results, setResults] = useState<
+    { company: string; reagent: string; catalog: string }[]
+  >([]);
 
   useEffect(() => {
     // localStorage에서 검색 결과 불러오기
@@ -35,11 +36,14 @@ const ResultTable = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (results[0].company == "I am sorry") {
-      setIsValid(false);
-    }
-  }, [results]);
+  const isValid = (
+    results: { company: string; reagent: string; catalog: string }[]
+  ): boolean => {
+    if (results.length === 0) return false; // 빈 배열이면 false
+
+    const firstResult = results[0];
+    return firstResult.company === "I am sorry";
+  };
 
   // const [widths, setWidths] = useState<Record<string, number>>({});
 
@@ -93,6 +97,8 @@ const ResultTable = () => {
     }
   };
 
+  console.log(results);
+
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
       <div className="flex flex-row w-full justify-center items-center gap-[20px]">
@@ -105,7 +111,7 @@ const ResultTable = () => {
       </div>
       <div className="relative w-full h-auto text-center">
         {/* login 유도 blur */}
-        {!isLoggedInState && isValid && (
+        {!isLoggedInState && isValid(results) && (
           <div
             className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0"
             style={{ minHeight: tableHeight }}
