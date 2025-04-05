@@ -5,21 +5,11 @@ import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { axiosInstance } from "@/api/axios";
 import { isLoggedInState } from "@/atoms/authAtom";
+import { setTokensInCookie } from "@/api/token";
 
 const Page = () => {
   const router = useRouter();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-
-  const setTokensInCookie = (accessToken: string, refreshToken: string) => {
-    const isSecure = window.location.protocol === "https:";
-
-    document.cookie = `access_token=${accessToken}; path=/; ${
-      isSecure ? "Secure" : ""
-    }; SameSite=Strict`;
-    document.cookie = `refresh_token=${refreshToken}; path=/; ${
-      isSecure ? "Secure" : ""
-    }; SameSite=Strict`;
-  };
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -31,10 +21,10 @@ const Page = () => {
 
         if (response.status >= 200 && response.status < 300) {
           if (response.data.is_user) {
-            const { accessToken, refreshToken } = response.data;
+            const { access_token, refresh_token } = response.data;
 
             // 쿠키에 토큰 저장
-            setTokensInCookie(accessToken, refreshToken);
+            setTokensInCookie(access_token, refresh_token);
 
             setIsLoggedIn(true);
             router.push("/"); // 메인 페이지로 이동

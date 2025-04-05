@@ -5,6 +5,7 @@ import TextInput from "@/components/Input";
 import { axiosInstance } from "@/api/axios";
 import { useSetRecoilState } from "recoil";
 import { isLoggedInState } from "@/atoms/authAtom";
+import { setTokensInCookie } from "@/api/token";
 
 const Join = () => {
   const [phoneNum, setPhoneNum] = useState<string>("");
@@ -18,6 +19,11 @@ const Join = () => {
 
       if (response.status >= 200 && response.status < 300) {
         setIsLoggedIn(true); // recoil login 상태 업데이트
+
+        const { access_token, refresh_token } = response.data;
+
+        // 쿠키에 토큰 저장
+        setTokensInCookie(access_token, refresh_token);
       }
     } catch (error) {
       console.error("회원가입 실패:", error);
