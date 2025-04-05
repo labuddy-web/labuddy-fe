@@ -16,7 +16,7 @@
 }
 
 @theme {
-  --color-yellow: #fcc45a;
+  --color-yellow: #fcc35a;
   --color-blue: #5479fe;
   --color-labuddy: linear-gradient(
     to right,
@@ -41,6 +41,10 @@ body {
 
 .bg-labuddy {
   background: var(--color-labuddy);
+}
+
+.bg-result {
+  background-image: linear-gradient(to right, #fcc35a33, #5479fe33);
 }
 
 .text-labuddy {

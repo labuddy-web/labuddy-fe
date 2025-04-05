@@ -6,7 +6,7 @@ const UserIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={2}
       stroke="currentColor"
-      className="size-6"
+      className="size-6 hidden sm:block"
     >
       <path
         strokeLinecap="round"

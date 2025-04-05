@@ -18,7 +18,7 @@ const Header = () => {
       const refreshToken = Cookie.get("refresh_token");
       setIsLoggedIn(!!(accessToken && refreshToken));
     }
-  }, [Cookie, setIsLoggedIn]);
+  }, [setIsLoggedIn]);
 
   const handleLogout = async () => {
     try {
@@ -44,14 +44,6 @@ const Header = () => {
         <Image src={labuddy_logo} alt="logo" width={172} height={40} />
       </Link>
       {isLoggedIn ? (
-        <Link href={"/login"}>
-          <div className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black">
-            <UserIcon />
-
-            <p className="hidden sm:block">log in</p>
-          </div>
-        </Link>
-      ) : (
         <div
           className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black"
           onClick={handleLogout}
@@ -59,6 +51,13 @@ const Header = () => {
           <UserIcon />
           <p className="hidden sm:block text-red-500">log out</p>
         </div>
+      ) : (
+        <Link href={"/login"}>
+          <div className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black">
+            <UserIcon />
+            <p>log in</p>
+          </div>
+        </Link>
       )}
     </div>
   );

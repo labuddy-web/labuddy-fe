@@ -62,7 +62,7 @@ const PaperList = () => {
                 </TableHeader>
                 <TableBody items={paper.results}>
                   {(item) => (
-                    <TableRow key={item.company} className="h-[60px]">
+                    <TableRow key={item.reagent} className="h-[60px]">
                       {(columnKey) => (
                         <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                           {getKeyValue(item, columnKey)}

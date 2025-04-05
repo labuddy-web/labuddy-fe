@@ -34,7 +34,7 @@ const ResultTable = () => {
     const storedResults = localStorage.getItem("searchResults");
     if (storedSessionId && storedPaperName && storedResults) {
       setResults(JSON.parse(storedResults));
-      setPaperName(JSON.parse(storedPaperName));
+      setPaperName(storedPaperName);
       setSessionId(JSON.parse(storedSessionId));
     }
   }, []);
@@ -103,10 +103,10 @@ const ResultTable = () => {
   console.log(results);
 
   return (
-    <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
+    <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] ">
       <div className="flex flex-row w-full justify-center items-center gap-[20px]">
         <p className="text-lg md:text-2xl lg:text-3xl">
-          &quot;{paperName}&quot;에 대한 검색 결과
+          {paperName}에 대한 검색 결과
         </p>
         <p className="cursor-pointer" onClick={handleDownload}>
           <DownloadIcon />
@@ -151,7 +151,7 @@ const ResultTable = () => {
             </TableHeader>
             <TableBody items={results}>
               {(item) => (
-                <TableRow key={item.company} className="h-[60px]">
+                <TableRow key={item.reagent} className="h-[60px]">
                   {(columnKey) => (
                     <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                       {getKeyValue(item, columnKey)}

@@ -23,25 +23,22 @@ const Page = () => {
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    const code = query.get("code");
-    const redirectUri = `${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI}`;
+    const code = query.get("google_access_token");
 
     const handleAuth = async () => {
       try {
-        const response = await axiosInstance.post(
-          `/auth/google/sign-in?code=${code}&redirectUri=${redirectUri}`
-        );
+        const response = await axiosInstance.post("/auth/login", code);
 
-        const { accessToken, refreshToken } = response.data;
+        if (response.data.is_user) {
+          const { accessToken, refreshToken } = response.data;
 
-        // 쿠키에 토큰 저장
-        setTokensInCookie(accessToken, refreshToken);
+          // 쿠키에 토큰 저장
+          setTokensInCookie(accessToken, refreshToken);
 
-        if (response.data.role == "GENERAL") {
-          router.push("/login/info"); // 추가 정보 입력 페이지로 이동
-        } else {
           setIsLoggedIn(true);
           router.push("/"); // 메인 페이지로 이동
+        } else {
+          router.push("/login/info"); // 추가 정보 입력 페이지로 이동
         }
       } catch (error) {
         console.error("Authentication failed:", error);
