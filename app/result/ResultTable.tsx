@@ -22,6 +22,7 @@ const ResultTable = () => {
   const [tableHeight, setTableHeight] = useState(0);
 
   const [sessionId, setSessionId] = useState<string>();
+  const [paperName, setPaperName] = useState<string>();
   const [results, setResults] = useState<
     { company: string; reagent: string; catalog: string }[]
   >([]);
@@ -29,9 +30,11 @@ const ResultTable = () => {
   useEffect(() => {
     // localStorage에서 검색 결과 불러오기
     const storedSessionId = localStorage.getItem("sessionId");
+    const storedPaperName = localStorage.getItem("paperName");
     const storedResults = localStorage.getItem("searchResults");
-    if (storedSessionId && storedResults) {
+    if (storedSessionId && storedPaperName && storedResults) {
       setResults(JSON.parse(storedResults));
+      setPaperName(JSON.parse(storedPaperName));
       setSessionId(JSON.parse(storedSessionId));
     }
   }, []);
@@ -103,7 +106,7 @@ const ResultTable = () => {
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
       <div className="flex flex-row w-full justify-center items-center gap-[20px]">
         <p className="text-lg md:text-2xl lg:text-3xl">
-          &quot;{sessionId}&quot;에 대한 검색 결과
+          &quot;{paperName}&quot;에 대한 검색 결과
         </p>
         <p className="cursor-pointer" onClick={handleDownload}>
           <DownloadIcon />
