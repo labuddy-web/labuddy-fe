@@ -11,6 +11,7 @@ const TextInput: React.FC<InputProps> = ({ data, setData }) => (
       value={data}
       onChange={(e) => setData(e.target.value)}
       className="w-full bg-black border-none outline-none shadow-none appearance-none text-gray-0"
+      placeholder="01012345678"
     />
   </div>
 );
