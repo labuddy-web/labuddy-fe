@@ -23,13 +23,15 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       const response = await authInstance.post("/auth/logout", {});
-      if (response.data.isSuccess === true) {
+      if (response.status >= 200 && response.status < 300) {
         alert(response.data.result);
       }
 
       // 쿠키 삭제
       Cookie.remove("access_token");
       Cookie.remove("refresh_token");
+
+      localStorage.clear();
 
       // recoil 상태 업데이트
       setIsLoggedIn(false);
