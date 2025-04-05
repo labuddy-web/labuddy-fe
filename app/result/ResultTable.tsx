@@ -45,7 +45,8 @@ const ResultTable = () => {
     if (results.length === 0) return false; // 빈 배열이면 false
 
     const firstResult = results[0];
-    return firstResult.company === "I am sorry";
+    if (firstResult.company === "I am sorry") return false;
+    else return true;
   };
 
   // const [widths, setWidths] = useState<Record<string, number>>({});
@@ -114,9 +115,9 @@ const ResultTable = () => {
       </div>
       <div className="relative w-full h-auto text-center">
         {/* login 유도 blur */}
-        {!isLoggedInState && isValid(results) && (
+        {isLoggedInState && isValid(results) && (
           <div
-            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0"
+            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-64px)]"
             style={{ minHeight: tableHeight }}
           >
             <Link href={"/login"}>
@@ -150,15 +151,15 @@ const ResultTable = () => {
               )}
             </TableHeader>
             <TableBody items={results}>
-              {(item) => (
-                <TableRow key={item.reagent} className="h-[60px]">
+              {results.map((item, index) => (
+                <TableRow key={index} className="h-[60px]">
                   {(columnKey) => (
                     <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                       {getKeyValue(item, columnKey)}
                     </TableCell>
                   )}
                 </TableRow>
-              )}
+              ))}
             </TableBody>
           </Table>
         </div>
