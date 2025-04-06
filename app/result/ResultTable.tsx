@@ -107,7 +107,9 @@ const ResultTable = () => {
     }
   };
 
-  console.log(results);
+  const handlePath = () => {
+    localStorage.setItem("path", "result");
+  };
 
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] ">
@@ -128,8 +130,11 @@ const ResultTable = () => {
             className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-64px)]"
             style={{ minHeight: tableHeight }}
           >
-            <Link href={`/login`}>
-              <button className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]">
+            <Link href={"/login"}>
+              <button
+                className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]"
+                onClick={handlePath}
+              >
                 <p>
                   Sign up in just 3 seconds
                   <br />

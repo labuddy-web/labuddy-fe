@@ -40,7 +40,10 @@ const Join = () => {
         const { access_token, refresh_token } = response.data;
         setTokensInCookie(access_token, refresh_token);
 
-        router.push("/"); // 메인 페이지로 이동
+        // "/" 또는 "/path"로 redirect
+        const path = localStorage.getItem("path") || "";
+        router.push(`/${path}`);
+        localStorage.removeItem("path");
 
         //setIsLoggedIn(true); // recoil login 상태 업데이트
       }
