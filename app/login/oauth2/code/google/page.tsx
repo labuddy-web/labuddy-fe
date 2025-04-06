@@ -53,7 +53,7 @@ const Page = () => {
     } else {
       console.error("No code found in URL");
     }
-  }, [router]);
+  }, [router, login]);
 
   return (
     <div className="h-[calc(100vh-84px)] w-screen justify-center items-center content-center text-center">
