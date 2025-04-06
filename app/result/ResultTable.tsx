@@ -17,8 +17,11 @@ import Link from "next/link";
 import { columns } from "@/data/paper";
 //import { isLoggedInState } from "@/atoms/authAtom";
 import { useIsLoggedInByCookie } from "@/api/auth";
+import { useRouter } from "next/navigation";
 
 const ResultTable = () => {
+  const router = useRouter();
+
   const isLoggedIn = useIsLoggedInByCookie();
 
   const tableRef = useRef<HTMLTableElement>(null);
@@ -40,7 +43,12 @@ const ResultTable = () => {
       setPaperName(storedPaperName);
       setSessionId(JSON.parse(storedSessionId));
     }
-  }, []);
+
+    if (!isLoggedIn) {
+      const currentPath = window.location.pathname;
+      router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
+    }
+  }, [isLoggedIn, router]);
 
   // const isValid = (
   //   results: { company: string; reagent: string; catalog: string }[]

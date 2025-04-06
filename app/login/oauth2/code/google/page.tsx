@@ -28,7 +28,12 @@ const Page = () => {
             // 쿠키에 토큰 저장
             setTokensInCookie(access_token, refresh_token);
 
-            router.push("/"); // 메인 페이지로 이동
+            const redirectPath =
+              typeof window !== "undefined"
+                ? new URLSearchParams(window.location.search).get("redirect")
+                : null;
+
+            router.push(redirectPath || "/"); // 없으면 "/"로 fallback
 
             // setIsLoggedIn(true);
           } else {
