@@ -51,7 +51,11 @@ const Page = () => {
     }
   }, [router, setIsLoggedIn]);
 
-  return <div className="h-screen">Redirecting...</div>;
+  return (
+    <div className="h-[calc(100vh-84px)] w-screen justify-center items-center text-center">
+      Redirecting...
+    </div>
+  );
 };
 
 export default Page;
