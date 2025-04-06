@@ -6,19 +6,27 @@ import { axiosInstance } from "@/api/axios";
 import { useSetRecoilState } from "recoil";
 import { isLoggedInState } from "@/atoms/authAtom";
 import { setTokensInCookie } from "@/api/token";
+import Cookie from "js-cookie";
 
 const Join = () => {
   const [phoneNum, setPhoneNum] = useState<string>("");
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  // cookie에서 토큰 확인
+  const googleAccessToken = Cookie.get("google_access_token");
 
   const handleSubmit = async () => {
     try {
       const response = await axiosInstance.post("/auth/signup", {
-        phoneNum,
+        google_access_token: googleAccessToken,
+        phone_number: phoneNum,
+        source_path: "",
       });
 
       if (response.status >= 200 && response.status < 300) {
         setIsLoggedIn(true); // recoil login 상태 업데이트
+
+        // 쿠키 삭제
+        Cookie.remove("google_access_token");
 
         const { access_token, refresh_token } = response.data;
 

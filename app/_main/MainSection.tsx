@@ -116,9 +116,8 @@ const MainSection = () => {
         {!file && (
           <div className="flex flex-col items-center justify-center">
             <UploadIcon />
-            <p className="text-sm text-white dark:text-white">
-              <span className="font-semibold">Click to upload</span> or drag and
-              drop
+            <p className="text-sm text-white dark:text-white font-semibold">
+              Click to upload
             </p>
           </div>
         )}

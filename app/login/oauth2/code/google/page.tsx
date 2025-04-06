@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { axiosInstance } from "@/api/axios";
 import { isLoggedInState } from "@/atoms/authAtom";
-import { setTokensInCookie } from "@/api/token";
+import { setGoogleTokenInCookie, setTokensInCookie } from "@/api/token";
 
 const Page = () => {
   const router = useRouter();
@@ -17,7 +17,9 @@ const Page = () => {
 
     const handleAuth = async () => {
       try {
-        const response = await axiosInstance.post("/auth/login", code);
+        const response = await axiosInstance.post("/auth/login", {
+          google_access_token: code,
+        });
 
         if (response.status >= 200 && response.status < 300) {
           if (response.data.is_user) {
@@ -29,6 +31,9 @@ const Page = () => {
             setIsLoggedIn(true);
             router.push("/"); // 메인 페이지로 이동
           } else {
+            // 쿠키에 구글 토큰 저장
+            setGoogleTokenInCookie(code ? code : "");
+
             router.push("/login/info"); // 추가 정보 입력 페이지로 이동
           }
         }
