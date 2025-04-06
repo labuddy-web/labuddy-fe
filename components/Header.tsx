@@ -7,11 +7,15 @@ import Link from "next/link";
 import { authInstance } from "@/api/axios";
 import Cookie from "js-cookie";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
 
   useEffect(() => {
+    router.refresh();
+
     if (typeof window !== "undefined") {
       // cookie에서 토큰 확인
       const accessToken = Cookie.get("access_token");
