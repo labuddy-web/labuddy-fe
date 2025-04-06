@@ -19,7 +19,7 @@ const Join = () => {
       const response = await axiosInstance.post("/auth/signup", {
         google_access_token: googleAccessToken,
         phone_number: phoneNum,
-        source_path: "",
+        source_path: "instagram",
       });
 
       if (response.status >= 200 && response.status < 300) {
