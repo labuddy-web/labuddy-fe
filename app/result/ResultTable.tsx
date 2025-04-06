@@ -18,34 +18,6 @@ import { columns } from "@/data/paper";
 import { useIsLoggedInByCookie } from "@/api/auth";
 import { useRouter } from "next/navigation";
 
-const handleSearch = async (sessionId: string | undefined) => {
-  try {
-    const response = await authInstance.get(`/analyze/result/${sessionId}`);
-
-    if (response.status >= 200 && response.status < 300) {
-      console.log("검색 성공", response.data);
-
-      // sessionId를 localStorage에 저장
-      localStorage.setItem(
-        "paperName",
-        JSON.stringify(response.data.paper_name)
-      );
-
-      // results를 localStorage에 저장
-      localStorage.setItem(
-        "searchResults",
-        JSON.stringify(response.data.results)
-      );
-    } else {
-      console.error("검색 실패:", response.statusText);
-      alert("검색 실패");
-    }
-  } catch (error) {
-    console.error("오류 발생:", error);
-    alert("검색 중 오류 발생");
-  }
-};
-
 const handleDownload = async (sessionId: string | undefined) => {
   try {
     const response = await authInstance.get(
@@ -69,7 +41,7 @@ const handleDownload = async (sessionId: string | undefined) => {
 };
 
 const handlePath = () => {
-  localStorage.setItem("path", "result");
+  localStorage.setItem("path", "searching");
 };
 
 const ResultTable = () => {
@@ -87,20 +59,12 @@ const ResultTable = () => {
   >([]);
 
   useEffect(() => {
-    // localStorage에서 sessionId 불러오기
+    // localStorage에서 결과 불러오기
     const storedSessionId = localStorage.getItem("sessionId");
-    if (storedSessionId) {
-      setSessionId(JSON.parse(storedSessionId));
-    }
-  }, [isLoggedIn, router]);
-
-  handleSearch(sessionId);
-
-  useEffect(() => {
-    // localStorage에서 검색 결과 불러오기
     const storedPaperName = localStorage.getItem("paperName");
     const storedResults = localStorage.getItem("searchResults");
-    if (storedPaperName && storedResults) {
+    if (storedSessionId && storedPaperName && storedResults) {
+      setSessionId(JSON.parse(storedSessionId));
       setPaperName(JSON.parse(storedPaperName));
       setResults(JSON.parse(storedResults));
     }
