@@ -42,15 +42,15 @@ const ResultTable = () => {
     }
   }, []);
 
-  const isValid = (
-    results: { company: string; reagent: string; catalog: string }[]
-  ): boolean => {
-    if (results.length === 0) return false; // 빈 배열이면 false
+  // const isValid = (
+  //   results: { company: string; reagent: string; catalog: string }[]
+  // ): boolean => {
+  //   if (results.length === 0) return false; // 빈 배열이면 false
 
-    const firstResult = results[0];
-    if (firstResult.company === "I am sorry") return false;
-    else return true;
-  };
+  //   const firstResult = results[0];
+  //   if (firstResult.company === "I am sorry") return false;
+  //   else return true;
+  // };
 
   // const [widths, setWidths] = useState<Record<string, number>>({});
 
@@ -112,7 +112,7 @@ const ResultTable = () => {
         <p className="text-lg md:text-2xl lg:text-3xl">
           {paperName}에 대한 검색 결과
         </p>
-        {!isLoggedIn && isValid(results) && (
+        {!isLoggedIn && (
           <p className="cursor-pointer" onClick={handleDownload}>
             <DownloadIcon />
           </p>
@@ -120,7 +120,7 @@ const ResultTable = () => {
       </div>
       <div className="relative w-full h-auto text-center">
         {/* login 유도 blur */}
-        {isLoggedIn && isValid(results) && (
+        {isLoggedIn && (
           <div
             className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-64px)]"
             style={{ minHeight: tableHeight }}
