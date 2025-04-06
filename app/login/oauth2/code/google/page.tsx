@@ -2,14 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
+//import { useSetRecoilState } from "recoil";
 import { axiosInstance } from "@/api/axios";
-import { isLoggedInState } from "@/atoms/authAtom";
+//import { isLoggedInState } from "@/atoms/authAtom";
 import { setGoogleTokenInCookie, setTokensInCookie } from "@/api/token";
 
 const Page = () => {
   const router = useRouter();
-  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  //const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -30,7 +30,7 @@ const Page = () => {
 
             router.push("/"); // 메인 페이지로 이동
 
-            setIsLoggedIn(true);
+            // setIsLoggedIn(true);
           } else {
             // 쿠키에 구글 토큰 저장
             setGoogleTokenInCookie(code ? code : "");
@@ -49,7 +49,7 @@ const Page = () => {
     } else {
       console.error("No code found in URL");
     }
-  }, [router, setIsLoggedIn]);
+  }, [router]);
 
   return (
     <div className="h-[calc(100vh-84px)] w-screen justify-center items-center text-center">

@@ -15,9 +15,13 @@ import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import { authInstance } from "@/api/axios";
 import Link from "next/link";
 import { columns } from "@/data/paper";
-import { isLoggedInState } from "@/atoms/authAtom";
+//import { isLoggedInState } from "@/atoms/authAtom";
+import { useIsLoggedInByCookie } from "@/api/auth";
 
 const ResultTable = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  setIsLoggedIn(useIsLoggedInByCookie());
+
   const tableRef = useRef<HTMLTableElement>(null);
   const [tableHeight, setTableHeight] = useState(0);
 
@@ -109,7 +113,7 @@ const ResultTable = () => {
         <p className="text-lg md:text-2xl lg:text-3xl">
           {paperName}에 대한 검색 결과
         </p>
-        {!isLoggedInState && isValid(results) && (
+        {!isLoggedIn && isValid(results) && (
           <p className="cursor-pointer" onClick={handleDownload}>
             <DownloadIcon />
           </p>
@@ -117,7 +121,7 @@ const ResultTable = () => {
       </div>
       <div className="relative w-full h-auto text-center">
         {/* login 유도 blur */}
-        {isLoggedInState && isValid(results) && (
+        {isLoggedIn && isValid(results) && (
           <div
             className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-64px)]"
             style={{ minHeight: tableHeight }}
