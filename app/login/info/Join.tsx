@@ -7,8 +7,11 @@ import { useSetRecoilState } from "recoil";
 import { isLoggedInState } from "@/atoms/authAtom";
 import { setTokensInCookie } from "@/api/token";
 import Cookie from "js-cookie";
+import { useRouter } from "next/router";
 
 const Join = () => {
+  const router = useRouter();
+
   const [phoneNum, setPhoneNum] = useState<string>("");
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   // cookie에서 토큰 확인
@@ -32,6 +35,8 @@ const Join = () => {
 
         // 쿠키에 토큰 저장
         setTokensInCookie(access_token, refresh_token);
+
+        router.push("/"); // 메인 페이지로 이동
       }
     } catch (error) {
       console.error("회원가입 실패:", error);
