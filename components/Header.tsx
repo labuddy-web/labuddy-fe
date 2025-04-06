@@ -18,7 +18,7 @@ const Header = () => {
       const refreshToken = Cookie.get("refresh_token");
       setIsLoggedIn(!!(accessToken && refreshToken));
     }
-  }, [setIsLoggedIn]);
+  }, []);
 
   const handleLogout = async () => {
     try {
