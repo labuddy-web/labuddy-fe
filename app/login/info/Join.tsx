@@ -37,6 +37,8 @@ const Join = () => {
         const { access_token, refresh_token } = response.data;
         setTokensInCookie(access_token, refresh_token);
 
+        router.refresh();
+
         // "/" 또는 "/path"로 redirect
         const path = localStorage.getItem("path") || "";
         router.push(`/${path}`);
