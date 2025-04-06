@@ -19,6 +19,60 @@ import { columns } from "@/data/paper";
 import { useIsLoggedInByCookie } from "@/api/auth";
 import { useRouter } from "next/navigation";
 
+const handleSearch = async (sessionId: string | undefined) => {
+  try {
+    const response = await authInstance.get(`/analyze/result/${sessionId}`);
+
+    if (response.status >= 200 && response.status < 300) {
+      console.log("검색 성공", response.data);
+
+      // sessionId를 localStorage에 저장
+      localStorage.setItem(
+        "paperName",
+        JSON.stringify(response.data.paper_name)
+      );
+
+      // results를 localStorage에 저장
+      localStorage.setItem(
+        "searchResults",
+        JSON.stringify(response.data.results)
+      );
+    } else {
+      console.error("검색 실패:", response.statusText);
+      alert("검색 실패");
+    }
+  } catch (error) {
+    console.error("오류 발생:", error);
+    alert("검색 중 오류 발생");
+  }
+};
+
+const handleDownload = async (sessionId: string | undefined) => {
+  try {
+    const response = await authInstance.get(
+      `/analyze/result/${sessionId}/csv`,
+      {
+        headers: {},
+      }
+    );
+
+    if (response.status >= 200 && response.status < 300) {
+      console.log("파일 다운로드 성공", response.data);
+      alert("파일 다운로드 성공에 성공하였습니다.");
+    } else {
+      console.error("파일 다운로드 실패:", response.statusText);
+      alert("파일 다운로드에 실패하였습니다.");
+    }
+  } catch (error) {
+    console.error("오류 발생:", error);
+    alert("다운로드 중 오류가 발생했습니다.");
+  }
+};
+
+const handlePath = () => {
+  localStorage.setItem("path", "result");
+};
+
 const ResultTable = () => {
   const router = useRouter();
 
@@ -35,13 +89,23 @@ const ResultTable = () => {
 
   useEffect(() => {
     // localStorage에서 sessionId 불러오기
-    const storedSessionId = localStorage.getItem("sessionId") || "";
+    const storedSessionId = localStorage.getItem("sessionId");
     if (storedSessionId) {
       setSessionId(JSON.parse(storedSessionId));
     }
 
-    handleSearch(storedSessionId);
+    // localStorage에서 검색 결과 불러오기
+    const storedPaperName = localStorage.getItem("paperName");
+    const storedResults = localStorage.getItem("searchResults");
+    if (storedPaperName && storedResults) {
+      setPaperName(JSON.parse(storedPaperName));
+      setResults(JSON.parse(storedResults));
+    }
+  }, [isLoggedIn, router]);
 
+  handleSearch(sessionId);
+
+  useEffect(() => {
     // localStorage에서 검색 결과 불러오기
     const storedPaperName = localStorage.getItem("paperName");
     const storedResults = localStorage.getItem("searchResults");
@@ -91,60 +155,6 @@ const ResultTable = () => {
     }
   }, []);
 
-  const handleSearch = async (sessionId: string) => {
-    try {
-      const response = await authInstance.get(`/analyze/result/${sessionId}`);
-
-      if (response.status >= 200 && response.status < 300) {
-        console.log("검색 성공", response.data);
-
-        // sessionId를 localStorage에 저장
-        localStorage.setItem(
-          "paperName",
-          JSON.stringify(response.data.paper_name)
-        );
-
-        // results를 localStorage에 저장
-        localStorage.setItem(
-          "searchResults",
-          JSON.stringify(response.data.results)
-        );
-      } else {
-        console.error("검색 실패:", response.statusText);
-        alert("검색 실패");
-      }
-    } catch (error) {
-      console.error("오류 발생:", error);
-      alert("검색 중 오류 발생");
-    }
-  };
-
-  const handleDownload = async () => {
-    try {
-      const response = await authInstance.get(
-        `/analyze/result/${sessionId}/csv`,
-        {
-          headers: {},
-        }
-      );
-
-      if (response.status >= 200 && response.status < 300) {
-        console.log("파일 다운로드 성공", response.data);
-        alert("파일 다운로드 성공에 성공하였습니다.");
-      } else {
-        console.error("파일 다운로드 실패:", response.statusText);
-        alert("파일 다운로드에 실패하였습니다.");
-      }
-    } catch (error) {
-      console.error("오류 발생:", error);
-      alert("다운로드 중 오류가 발생했습니다.");
-    }
-  };
-
-  const handlePath = () => {
-    localStorage.setItem("path", "result");
-  };
-
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] ">
       <div className="flex flex-row w-full justify-center items-center gap-[20px]">
@@ -152,7 +162,10 @@ const ResultTable = () => {
           {paperName}에 대한 검색 결과
         </p>
         {isLoggedIn && (
-          <p className="cursor-pointer" onClick={handleDownload}>
+          <p
+            className="cursor-pointer"
+            onClick={() => handleDownload(sessionId)}
+          >
             <DownloadIcon />
           </p>
         )}
