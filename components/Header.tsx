@@ -24,7 +24,7 @@ const Header = () => {
     try {
       const response = await authInstance.post("/auth/logout", {});
       if (response.status >= 200 && response.status < 300) {
-        alert(response.data.result);
+        console.log("logout success");
       }
 
       // 쿠키 삭제
