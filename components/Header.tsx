@@ -51,7 +51,7 @@ const Header = () => {
           onClick={handleLogout}
         >
           <UserIcon />
-          <p className="hidden sm:block text-red-500">log out</p>
+          <p className="text-red-500">log out</p>
         </div>
       ) : (
         <Link href={"/login"}>
