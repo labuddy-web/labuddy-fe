@@ -33,8 +33,6 @@ const ResultTable = () => {
     { company: string; reagent: string; catalog: string }[]
   >([]);
 
-  const [currentPath, setCurrentPath] = useState<string | number | boolean>("");
-
   useEffect(() => {
     // localStorage에서 검색 결과 불러오기
     const storedSessionId = localStorage.getItem("sessionId");
@@ -45,9 +43,6 @@ const ResultTable = () => {
       setPaperName(storedPaperName);
       setSessionId(JSON.parse(storedSessionId));
     }
-
-    const current = window.location.pathname;
-    setCurrentPath(current);
   }, [isLoggedIn, router]);
 
   // const isValid = (
@@ -133,7 +128,7 @@ const ResultTable = () => {
             className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-64px)]"
             style={{ minHeight: tableHeight }}
           >
-            <Link href={`/login?redirect=${encodeURIComponent(currentPath)}`}>
+            <Link href={`/login`}>
               <button className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]">
                 <p>
                   Sign up in just 3 seconds
