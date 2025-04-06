@@ -92,14 +92,6 @@ const ResultTable = () => {
     if (storedSessionId) {
       setSessionId(JSON.parse(storedSessionId));
     }
-
-    // localStorage에서 검색 결과 불러오기
-    const storedPaperName = localStorage.getItem("paperName");
-    const storedResults = localStorage.getItem("searchResults");
-    if (storedPaperName && storedResults) {
-      setPaperName(JSON.parse(storedPaperName));
-      setResults(JSON.parse(storedResults));
-    }
   }, [isLoggedIn, router]);
 
   handleSearch(sessionId);

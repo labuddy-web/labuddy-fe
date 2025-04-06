@@ -48,11 +48,6 @@ const MainSection = () => {
         );
 
         router.push("/searching");
-
-        // 3초 후 `/result` 페이지로 이동
-        setTimeout(() => {
-          router.push("/result");
-        }, 3000);
       } else {
         console.error("파일 업로드 실패:", response.statusText);
         alert("파일 업로드에 실패하였습니다.");
