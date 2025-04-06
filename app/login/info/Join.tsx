@@ -7,14 +7,14 @@ import { useSetRecoilState } from "recoil";
 import { isLoggedInState } from "@/atoms/authAtom";
 import { setTokensInCookie } from "@/api/token";
 import Cookie from "js-cookie";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Join = () => {
   const router = useRouter();
-
   const [phoneNum, setPhoneNum] = useState<string>("");
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-  // cookie에서 토큰 확인
+
+  // cookie에서 구글 토큰 확인
   const googleAccessToken = Cookie.get("google_access_token");
 
   const handleSubmit = async () => {
@@ -31,9 +31,8 @@ const Join = () => {
         // 쿠키 삭제
         Cookie.remove("google_access_token");
 
-        const { access_token, refresh_token } = response.data;
-
         // 쿠키에 토큰 저장
+        const { access_token, refresh_token } = response.data;
         setTokensInCookie(access_token, refresh_token);
 
         router.push("/"); // 메인 페이지로 이동
