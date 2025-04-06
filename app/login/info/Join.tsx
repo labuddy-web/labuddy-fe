@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextInput from "@/components/Input";
 import { axiosInstance } from "@/api/axios";
 //import { useSetRecoilState } from "recoil";
@@ -15,7 +15,14 @@ const Join = () => {
   // const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   // cookie에서 구글 토큰 확인
-  const googleAccessToken = Cookie.get("google_access_token");
+  const [googleAccessToken, setGoogleAccessToken] = useState<
+    string | undefined
+  >("");
+
+  useEffect(() => {
+    const token = Cookie.get("google_access_token");
+    setGoogleAccessToken(token);
+  }, []);
 
   const handleSubmit = async () => {
     try {

@@ -19,8 +19,7 @@ import { columns } from "@/data/paper";
 import { useIsLoggedInByCookie } from "@/api/auth";
 
 const ResultTable = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  setIsLoggedIn(useIsLoggedInByCookie());
+  const isLoggedIn = useIsLoggedInByCookie();
 
   const tableRef = useRef<HTMLTableElement>(null);
   const [tableHeight, setTableHeight] = useState(0);

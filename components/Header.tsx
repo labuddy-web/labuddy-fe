@@ -6,13 +6,19 @@ import UserIcon from "./icons/UserIcon";
 import Link from "next/link";
 import { authInstance } from "@/api/axios";
 import Cookie from "js-cookie";
-import { useIsLoggedInByCookie } from "@/api/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(); // Recoil 상태 업데이트 함수
 
-  setIsLoggedIn(useIsLoggedInByCookie());
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // cookie에서 토큰 확인
+      const accessToken = Cookie.get("access_token");
+      const refreshToken = Cookie.get("refresh_token");
+      setIsLoggedIn(!!(accessToken && refreshToken));
+    }
+  }, [setIsLoggedIn]);
 
   const handleLogout = async () => {
     try {
