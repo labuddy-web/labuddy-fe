@@ -25,14 +25,12 @@ const Page = () => {
             // 쿠키에 토큰 저장
             setTokensInCookie(access_token, refresh_token);
 
-            router.refresh();
-
             // "/" 또는 "/path"로 redirect
             const path = localStorage.getItem("path") || "";
             router.push(`/${path}`);
             localStorage.removeItem("path");
 
-            // setIsLoggedIn(true);
+            router.refresh();
           } else {
             // 쿠키에 구글 토큰 저장
             setGoogleTokenInCookie(code ? code : "");
@@ -54,7 +52,7 @@ const Page = () => {
   }, [router]);
 
   return (
-    <div className="h-[calc(100vh-84px)] w-screen justify-center items-center text-center">
+    <div className="h-[calc(100vh-84px)] w-screen justify-center items-center content-center text-center">
       Redirecting...
     </div>
   );
