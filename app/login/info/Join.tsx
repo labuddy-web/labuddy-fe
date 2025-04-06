@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import TextInput from "@/components/Input";
 import { axiosInstance } from "@/api/axios";
-//import { useSetRecoilState } from "recoil";
-//import { isLoggedInState } from "@/atoms/authAtom";
 import { setTokensInCookie } from "@/api/token";
 import Cookie from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -12,7 +10,6 @@ import { useRouter } from "next/navigation";
 const Join = () => {
   const router = useRouter();
   const [phoneNum, setPhoneNum] = useState<string>("");
-  // const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   // cookie에서 구글 토큰 확인
   const [googleAccessToken, setGoogleAccessToken] = useState<
@@ -44,8 +41,6 @@ const Join = () => {
         const path = localStorage.getItem("path") || "";
         router.push(`/${path}`);
         localStorage.removeItem("path");
-
-        //setIsLoggedIn(true); // recoil login 상태 업데이트
       }
     } catch (error) {
       console.error("회원가입 실패:", error);

@@ -2,14 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-//import { useSetRecoilState } from "recoil";
 import { axiosInstance } from "@/api/axios";
-//import { isLoggedInState } from "@/atoms/authAtom";
 import { setGoogleTokenInCookie, setTokensInCookie } from "@/api/token";
 
 const Page = () => {
   const router = useRouter();
-  //const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);

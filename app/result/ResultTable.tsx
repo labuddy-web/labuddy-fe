@@ -15,7 +15,6 @@ import ArrowRightIcon from "@/components/icons/ArrowRightIcon";
 import { authInstance } from "@/api/axios";
 import Link from "next/link";
 import { columns } from "@/data/paper";
-//import { isLoggedInState } from "@/atoms/authAtom";
 import { useIsLoggedInByCookie } from "@/api/auth";
 import { useRouter } from "next/navigation";
 

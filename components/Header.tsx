@@ -9,7 +9,7 @@ import Cookie from "js-cookie";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(); // Recoil 상태 업데이트 함수
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -33,7 +33,7 @@ const Header = () => {
 
       localStorage.clear();
 
-      // recoil 상태 업데이트
+      // login 상태 업데이트
       setIsLoggedIn(false);
     } catch (error) {
       console.log(error);
