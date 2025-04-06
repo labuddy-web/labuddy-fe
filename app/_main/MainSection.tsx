@@ -125,7 +125,7 @@ const MainSection = () => {
         {file && (
           <button
             onClick={handleUpload}
-            className="mt-4 px-6 py-2 bg-gray-200/20 text-white rounded-lg"
+            className="mt-4 px-6 py-2 bg-gray-200/20 text-white rounded-lg cursor-pointer"
           >
             start search
           </button>

@@ -109,9 +109,11 @@ const ResultTable = () => {
         <p className="text-lg md:text-2xl lg:text-3xl">
           {paperName}에 대한 검색 결과
         </p>
-        <p className="cursor-pointer" onClick={handleDownload}>
-          <DownloadIcon />
-        </p>
+        {!isLoggedInState && isValid(results) && (
+          <p className="cursor-pointer" onClick={handleDownload}>
+            <DownloadIcon />
+          </p>
+        )}
       </div>
       <div className="relative w-full h-auto text-center">
         {/* login 유도 blur */}
