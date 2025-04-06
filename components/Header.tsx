@@ -6,25 +6,10 @@ import UserIcon from "./icons/UserIcon";
 import Link from "next/link";
 import { authInstance } from "@/api/axios";
 import Cookie from "js-cookie";
-//import { useEffect, useState } from "react";
-//import { useRouter } from "next/navigation";
 import { useAuth } from "@/atoms/AuthContext";
 
 const Header = () => {
-  //const router = useRouter();
-  //const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
   const { isLoggedIn, logout } = useAuth();
-
-  // useEffect(() => {
-  //   router.refresh();
-
-  //   if (typeof window !== "undefined") {
-  //     // cookie에서 토큰 확인
-  //     const accessToken = Cookie.get("access_token");
-  //     const refreshToken = Cookie.get("refresh_token");
-  //     setIsLoggedIn(!!(accessToken && refreshToken));
-  //   }
-  // }, [router]);
 
   const handleLogout = async () => {
     try {
@@ -39,8 +24,7 @@ const Header = () => {
 
       localStorage.clear();
 
-      // login 상태 업데이트
-      //setIsLoggedIn(false);
+      //logout 전역 상태 업데이트
       logout();
     } catch (error) {
       console.log(error);
