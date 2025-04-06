@@ -34,14 +34,20 @@ const ResultTable = () => {
   >([]);
 
   useEffect(() => {
+    // localStorage에서 sessionId 불러오기
+    const storedSessionId = localStorage.getItem("sessionId") || "";
+    if (storedSessionId) {
+      setSessionId(JSON.parse(storedSessionId));
+    }
+
+    handleSearch(storedSessionId);
+
     // localStorage에서 검색 결과 불러오기
-    const storedSessionId = localStorage.getItem("sessionId");
     const storedPaperName = localStorage.getItem("paperName");
     const storedResults = localStorage.getItem("searchResults");
-    if (storedSessionId && storedPaperName && storedResults) {
+    if (storedPaperName && storedResults) {
+      setPaperName(JSON.parse(storedPaperName));
       setResults(JSON.parse(storedResults));
-      setPaperName(storedPaperName);
-      setSessionId(JSON.parse(storedSessionId));
     }
   }, [isLoggedIn, router]);
 
@@ -84,6 +90,34 @@ const ResultTable = () => {
       setTableHeight(tableRef.current.clientHeight - 68);
     }
   }, []);
+
+  const handleSearch = async (sessionId: string) => {
+    try {
+      const response = await authInstance.get(`/analyze/result/${sessionId}`);
+
+      if (response.status >= 200 && response.status < 300) {
+        console.log("검색 성공", response.data);
+
+        // sessionId를 localStorage에 저장
+        localStorage.setItem(
+          "paperName",
+          JSON.stringify(response.data.paper_name)
+        );
+
+        // results를 localStorage에 저장
+        localStorage.setItem(
+          "searchResults",
+          JSON.stringify(response.data.results)
+        );
+      } else {
+        console.error("검색 실패:", response.statusText);
+        alert("검색 실패");
+      }
+    } catch (error) {
+      console.error("오류 발생:", error);
+      alert("검색 중 오류 발생");
+    }
+  };
 
   const handleDownload = async () => {
     try {
