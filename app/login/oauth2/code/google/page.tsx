@@ -4,8 +4,10 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { axiosInstance } from "@/api/axios";
 import { setGoogleTokenInCookie, setTokensInCookie } from "@/api/token";
+import { useAuth } from "@/atoms/AuthContext";
 
 const Page = () => {
+  const { login } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -20,6 +22,8 @@ const Page = () => {
 
         if (response.status >= 200 && response.status < 300) {
           if (response.data.is_user) {
+            login();
+
             const { access_token, refresh_token } = response.data;
 
             // 쿠키에 토큰 저장

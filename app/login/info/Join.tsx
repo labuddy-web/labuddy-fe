@@ -6,8 +6,10 @@ import { axiosInstance } from "@/api/axios";
 import { setTokensInCookie } from "@/api/token";
 import Cookie from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/atoms/AuthContext";
 
 const Join = () => {
+  const { login } = useAuth();
   const router = useRouter();
   const [phoneNum, setPhoneNum] = useState<string>("");
 
@@ -30,6 +32,8 @@ const Join = () => {
       });
 
       if (response.status >= 200 && response.status < 300) {
+        login();
+
         // 쿠키 삭제
         Cookie.remove("google_access_token");
 
