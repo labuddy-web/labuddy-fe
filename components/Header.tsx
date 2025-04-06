@@ -22,7 +22,7 @@ const Header = () => {
       const refreshToken = Cookie.get("refresh_token");
       setIsLoggedIn(!!(accessToken && refreshToken));
     }
-  }, []);
+  }, [router]);
 
   const handleLogout = async () => {
     try {
