@@ -26,8 +26,6 @@ const Join = () => {
       });
 
       if (response.status >= 200 && response.status < 300) {
-        setIsLoggedIn(true); // recoil login 상태 업데이트
-
         // 쿠키 삭제
         Cookie.remove("google_access_token");
 
@@ -36,6 +34,8 @@ const Join = () => {
         setTokensInCookie(access_token, refresh_token);
 
         router.push("/"); // 메인 페이지로 이동
+
+        setIsLoggedIn(true); // recoil login 상태 업데이트
       }
     } catch (error) {
       console.error("회원가입 실패:", error);

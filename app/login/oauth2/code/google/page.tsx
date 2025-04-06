@@ -28,8 +28,9 @@ const Page = () => {
             // 쿠키에 토큰 저장
             setTokensInCookie(access_token, refresh_token);
 
-            setIsLoggedIn(true);
             router.push("/"); // 메인 페이지로 이동
+
+            setIsLoggedIn(true);
           } else {
             // 쿠키에 구글 토큰 저장
             setGoogleTokenInCookie(code ? code : "");
