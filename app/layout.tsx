@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/atoms/AuthContext";
 import "./globals.css";
 import Header from "@/components/Header";
 
@@ -9,8 +10,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
