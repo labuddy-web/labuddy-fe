@@ -3,7 +3,10 @@ import { contentList, ourMission, footer } from "./contentData";
 
 const ContentSection = () => {
   return (
-    <section className="font-roca flex flex-col w-full h-auto justify-center items-center px-[32px] lg:px-[120px] xl:px-[320px] py-[180px] gap-[120px]">
+    <section
+      className="font-roca flex flex-col w-full h-auto justify-center items-center px-[32px] lg:px-[120px] xl:px-[320px] py-[180px] gap-[120px]"
+      style={{ fontFamily: "Roca" }}
+    >
       {contentList.map((item, index) => (
         <MainContentBox key={index} title={item.title} content={item.content} />
       ))}

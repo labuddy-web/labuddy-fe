@@ -1,5 +1,11 @@
+import { DetailContentBox } from "@/components/MainContentBox";
 import { ReactNode } from "react";
-
+import struggling1 from "@/public/main/struggling1.svg";
+import struggling2 from "@/public/main/struggling2.svg";
+import struggling3 from "@/public/main/struggling3.svg";
+import labuddy1 from "@/public/main/labuddy1.svg";
+import labuddy2 from "@/public/main/labuddy2.svg";
+import labuddy3 from "@/public/main/labuddy3.svg";
 interface ContentItem {
   title: ReactNode;
   content: ReactNode;
@@ -27,16 +33,23 @@ export const contentList: ContentItem[] = [
   {
     title: <p>Struggling with any of these?</p>,
     content: (
-      <p>
-        1. <span className="font-bold">Takes too long</span> to find reagents
-        and equipment in papers
-        <br />
-        2. <span className="font-bold">Info is unclear</span> — more searching
-        needed
-        <br />
-        3. <span className="font-bold">No brand-specific details</span> — it
-        gets confusing
-      </p>
+      <div className="flex sm:flex-row flex-col w-auto h-auto justify-center items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
+        <DetailContentBox
+          title={<p>1. Takes too long</p>}
+          content={<p>to find reagents and equipment in papers</p>}
+          img={struggling1}
+        />
+        <DetailContentBox
+          title={<p>2. Info is unclear</p>}
+          content={<p>more searching needed</p>}
+          img={struggling2}
+        />
+        <DetailContentBox
+          title={<p>3. No brand-specific details</p>}
+          content={<p>it gets confusing</p>}
+          img={struggling3}
+        />
+      </div>
     ),
   },
   {
@@ -44,20 +57,48 @@ export const contentList: ContentItem[] = [
     content: (
       <p>
         Let <span className="font-bold">LabBuddy</span> handle the reagent and
-        equipment search — so you can focus on your research.
+        equipment search,
+        <br />
+        <span className="font-bold">so you can focus on your research.</span>
       </p>
     ),
   },
   {
     title: <p>Why LabBuddy?</p>,
     content: (
-      <p>
-        1. Instantly extract reagent and equipment info from papers
-        <br />
-        2. Get details organized by brand
-        <br />
-        3. Go from reading to purchasing — all in one place
-      </p>
+      <div className="flex sm:flex-row flex-col w-auto h-auto justify-center items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
+        <DetailContentBox
+          title={null}
+          content={
+            <p>
+              Instantly extract from paper
+              <br />
+              <span className="font-bold">reagent and equipment info</span>
+            </p>
+          }
+          img={labuddy1}
+        />
+        <DetailContentBox
+          title={null}
+          content={
+            <p>
+              Get details <span className="font-bold">organized by brand</span>
+            </p>
+          }
+          img={labuddy2}
+        />
+        <DetailContentBox
+          title={null}
+          content={
+            <p>
+              Go from <span className="font-bold">reading to purchasing</span>
+              <br />
+              all in one place
+            </p>
+          }
+          img={labuddy3}
+        />
+      </div>
     ),
   },
 ];

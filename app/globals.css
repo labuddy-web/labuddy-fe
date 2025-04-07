@@ -9,36 +9,36 @@
 
 @font-face {
   font-family: "Roca";
-  src: url("/components/font/fonnts.com-Roca-Thin.otf") format("opentype");
-  font-weight: 100;
+  src: url("/public/font/fonnts.com-Roca-Thin.otf") format("opentype");
+  font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Roca";
-  src: url("/components/font/fonnts.com-Roca-Light.otf") format("opentype");
+  src: url("/public/font/fonnts.com-Roca-Light.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Roca";
-  src: url("/components/font/fonnts.com-Roca-Regular.otf") format("opentype");
+  src: url("/public/font/fonnts.com-Roca-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Roca";
-  src: url("/components/font/fonnts.com-Roca-.otf") format("opentype"); /* 일반체로 보이면 이걸 500으로 */
+  src: url("/public/font/fonnts.com-Roca-.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Roca";
-  src: url("/components/font/fonnts.com-Roca-Black.otf") format("opentype");
-  font-weight: 900;
+  src: url("/public/font/fonnts.com-Roca-Black.otf") format("opentype");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -51,7 +51,6 @@
 }
 
 @theme {
-  --font-roca: var(--font-roca)
   --color-yellow: #fcc35a;
   --color-blue: #5479fe;
   --color-labuddy: linear-gradient(
@@ -71,7 +70,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif, "Roca";
+  font-family: Arial, Helvetica, sans-serif;
   line-height: var(--leading);
 }
 
