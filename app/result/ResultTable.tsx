@@ -33,7 +33,7 @@ const handleDownload = async (sessionId: string | undefined) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "result.xls");
+      link.setAttribute("download", "result.csv");
       document.body.appendChild(link);
       link.click(); // 자동 다운로드 트리거
       link.remove(); // cleanup
