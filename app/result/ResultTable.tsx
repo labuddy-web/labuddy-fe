@@ -24,6 +24,7 @@ const handleDownload = async (sessionId: string | undefined) => {
       `/analyze/result/${sessionId}/csv`,
       {
         headers: {},
+        responseType: "blob",
       }
     );
 
