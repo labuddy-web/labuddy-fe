@@ -17,6 +17,7 @@ import Link from "next/link";
 import { columns } from "@/data/paper";
 import { useIsLoggedInByCookie } from "@/api/auth";
 import { useRouter } from "next/navigation";
+import * as XLSX from "xlsx";
 
 const handleDownload = async (sessionId: string | undefined) => {
   try {
@@ -29,15 +30,25 @@ const handleDownload = async (sessionId: string | undefined) => {
     );
 
     if (response.status >= 200 && response.status < 300) {
-      const blob = new Blob([response.data], { type: "text/csv" });
-      const url = window.URL.createObjectURL(blob);
+      const csvText = await response.data.text(); // blob → text
+      const workbook = XLSX.read(csvText, { type: "string" });
+      const xlsxArrayBuffer = XLSX.write(workbook, {
+        bookType: "xlsx",
+        type: "array",
+      });
+
+      const xlsxBlob = new Blob([xlsxArrayBuffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+
+      const url = window.URL.createObjectURL(xlsxBlob);
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "result.csv");
+      link.setAttribute("download", "result.xlsx");
       document.body.appendChild(link);
-      link.click(); // 자동 다운로드 트리거
-      link.remove(); // cleanup
-      window.URL.revokeObjectURL(url); // blob URL 해제
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
     } else {
       console.error("파일 다운로드 실패:", response.statusText);
       alert("파일 다운로드에 실패하였습니다.");
