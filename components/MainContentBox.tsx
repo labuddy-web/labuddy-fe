@@ -17,7 +17,7 @@ export const MainContentBox = ({ title, content }: MainContentBoxProps) => {
   return (
     <div className="flex flex-col h-auto justify-center items-center gap-[20px] text-center">
       <CheckBadgeIcon />
-      <div className="text-base lg:text-lg font-black">{title}</div>
+      <div className="text-lg lg:text-xl font-black">{title}</div>
       <div className="text-xs lg:text-sm font-light">{content}</div>
     </div>
   );
