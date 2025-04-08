@@ -12,6 +12,7 @@ const Join = () => {
   const { login } = useAuth();
   const router = useRouter();
   const [phoneNum, setPhoneNum] = useState<string>("");
+  const [path, setPath] = useState<string>("");
 
   // cookie에서 구글 토큰 확인
   const [googleAccessToken, setGoogleAccessToken] = useState<
@@ -19,7 +20,9 @@ const Join = () => {
   >("");
 
   useEffect(() => {
+    const storedPath = localStorage.getItem("path") || "unknown";
     const token = Cookie.get("google_access_token");
+    setPath(storedPath);
     setGoogleAccessToken(token);
   }, []);
 
@@ -28,7 +31,7 @@ const Join = () => {
       const response = await axiosInstance.post("/auth/signup", {
         google_access_token: googleAccessToken,
         phone_number: phoneNum,
-        source_path: "instagram",
+        source_path: path,
       });
 
       if (response.status >= 200 && response.status < 300) {
