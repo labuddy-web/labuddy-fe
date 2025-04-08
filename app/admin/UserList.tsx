@@ -12,15 +12,15 @@ import {
   getKeyValue,
 } from "@heroui/table";
 
-const UserList = () => {
+const UserList = ({ users }: { users: string | undefined }) => {
   const [userList, setUserList] = useState<User[]>([]);
 
   useEffect(() => {
     // localStorage에서 검색 결과 불러오기
-    const storedUserList = localStorage.getItem("userList");
-    if (storedUserList) {
+    //const storedUserList = localStorage.getItem("userList");
+    if (users) {
       try {
-        const parsedData = JSON.parse(storedUserList); // JSON 파싱
+        const parsedData = JSON.parse(users); // JSON 파싱
         if (Array.isArray(parsedData)) {
           setUserList(parsedData); // papers 배열을 상태로 저장
         }
@@ -28,7 +28,7 @@ const UserList = () => {
         console.error("JSON 파싱 오류:", error);
       }
     }
-  }, []);
+  }, [users]);
 
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">

@@ -13,15 +13,15 @@ import {
 import DownloadIcon from "@/components/icons/DownloadIcon";
 import { columns, Paper } from "@/data/paper";
 
-const PaperList = () => {
+const PaperList = ({ papers }: { papers: string | undefined }) => {
   const [paperList, setPaperList] = useState<Paper[]>([]);
 
   useEffect(() => {
     // localStorage에서 검색 결과 불러오기
-    const storedPaperList = localStorage.getItem("paperList");
-    if (storedPaperList) {
+    //const storedPaperList = localStorage.getItem("paperList");
+    if (papers) {
       try {
-        const parsedData = JSON.parse(storedPaperList); // JSON 파싱
+        const parsedData = JSON.parse(papers); // JSON 파싱
         if (Array.isArray(parsedData)) {
           setPaperList(parsedData); // papers 배열을 상태로 저장
         }
@@ -29,7 +29,7 @@ const PaperList = () => {
         console.error("JSON 파싱 오류:", error);
       }
     }
-  }, []);
+  }, [papers]);
 
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px]">
