@@ -14,16 +14,13 @@ const fetchAdminData = async () => {
     if (response.status >= 200 && response.status < 300) {
       console.log("검색 성공", response.data);
 
+      const users = response.data?.results?.users ?? [];
+      const papers = response.data?.results?.papers ?? [];
+
       // user list를 localStorage에 저장
-      localStorage.setItem(
-        "userList",
-        JSON.stringify(response.data.results.users)
-      );
+      localStorage.setItem("userList", JSON.stringify(users));
       // paper list를 localStorage에 저장
-      localStorage.setItem(
-        "paperList",
-        JSON.stringify(response.data.results.papers)
-      );
+      localStorage.setItem("paperList", JSON.stringify(papers));
     } else {
       console.error("검색 실패:", response.statusText);
       alert("검색 실패");
