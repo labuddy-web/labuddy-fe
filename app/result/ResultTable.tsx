@@ -18,6 +18,7 @@ import { columns } from "@/data/paper";
 import { useIsLoggedInByCookie } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
+import ArrowTopRightIcon from "@/components/icons/ArrowTopRightIcon";
 
 const handleDownload = async (sessionId: string | undefined) => {
   try {
@@ -74,54 +75,30 @@ const ResultTable = () => {
   const [sessionId, setSessionId] = useState<string>();
   const [paperName, setPaperName] = useState<string>();
   const [results, setResults] = useState<
-    { company: string; reagent: string; catalog: string }[]
+    { company: string; reagent: string; walla: string; catalog: string }[]
   >([]);
 
   useEffect(() => {
-    // localStorage에서 결과 불러오기
     const storedSessionId = localStorage.getItem("sessionId");
     const storedPaperName = localStorage.getItem("paperName");
     const storedResults = localStorage.getItem("searchResults");
+
     if (storedSessionId && storedPaperName && storedResults) {
       setSessionId(JSON.parse(storedSessionId));
       setPaperName(JSON.parse(storedPaperName));
-      setResults(JSON.parse(storedResults));
+
+      const parsedResults = JSON.parse(storedResults);
+
+      const resultsWithWalla = parsedResults.map(
+        (item: { company: string; reagent: string; catalog: string }) => ({
+          ...item,
+          walla: "",
+        })
+      );
+
+      setResults(resultsWithWalla);
     }
   }, [isLoggedIn, router]);
-
-  // const isValid = (
-  //   results: { company: string; reagent: string; catalog: string }[]
-  // ): boolean => {
-  //   if (results.length === 0) return false; // 빈 배열이면 false
-
-  //   const firstResult = results[0];
-  //   if (firstResult.company === "I am sorry") return false;
-  //   else return true;
-  // };
-
-  // const [widths, setWidths] = useState<Record<string, number>>({});
-
-  // useEffect(() => {
-  //   if (cellRef.current) {
-  //     setWidth(width.append(cellRef.current.clientWidth));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (tableRef.current) {
-  //     const cells = tableRef.current.querySelectorAll("td");
-  //     const newWidths: Record<string, number> = {};
-
-  //     cells.forEach((cell) => {
-  //       const key = cell.getAttribute("data-key"); // key 값 가져오기
-  //       if (key) {
-  //         newWidths[key] = cell.clientWidth; // key를 기반으로 너비 저장
-  //       }
-  //     });
-
-  //     setWidths(newWidths); // 상태 업데이트
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (tableRef.current) {
@@ -189,7 +166,21 @@ const ResultTable = () => {
                 <TableRow key={index} className="h-[60px]">
                   {(columnKey) => (
                     <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
-                      {getKeyValue(item, columnKey)}
+                      {columnKey === "walla"
+                        ? isLoggedIn && (
+                            <Link
+                              href={"https://walla.my/v/ja2h7cK5qXFaI6nJjFn2"}
+                              target="_blank"
+                            >
+                              <button className="hidden sm:block text-blue underline">
+                                check LOWEST PRICE
+                              </button>
+                              <button className="block sm:hidden text-blue underline">
+                                <ArrowTopRightIcon />
+                              </button>
+                            </Link>
+                          )
+                        : getKeyValue(item, columnKey)}
                     </TableCell>
                   )}
                 </TableRow>
