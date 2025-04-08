@@ -26,8 +26,8 @@ const AdminPage = () => {
         if (response.status >= 200 && response.status < 300) {
           console.log("검색 성공", response.data);
 
-          const users = response.data?.results?.users ?? [];
-          const papers = response.data?.results?.papers ?? [];
+          const users = response.data?.users ?? [];
+          const papers = response.data?.papers ?? [];
 
           setUsers(JSON.stringify(users));
           setPapers(JSON.stringify(papers));
