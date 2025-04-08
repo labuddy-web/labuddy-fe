@@ -75,7 +75,7 @@ const ResultTable = () => {
   const [sessionId, setSessionId] = useState<string>();
   const [paperName, setPaperName] = useState<string>();
   const [results, setResults] = useState<
-    { company: string; reagent: string; walla: string; catalog: string }[]
+    { company: string; reagent: string; catalog: string }[]
   >([]);
 
   useEffect(() => {
@@ -86,17 +86,7 @@ const ResultTable = () => {
     if (storedSessionId && storedPaperName && storedResults) {
       setSessionId(JSON.parse(storedSessionId));
       setPaperName(JSON.parse(storedPaperName));
-
-      const parsedResults = JSON.parse(storedResults);
-
-      const resultsWithWalla = parsedResults.map(
-        (item: { company: string; reagent: string; catalog: string }) => ({
-          ...item,
-          walla: "",
-        })
-      );
-
-      setResults(resultsWithWalla);
+      setResults(JSON.parse(storedResults));
     }
   }, [isLoggedIn, router]);
 
