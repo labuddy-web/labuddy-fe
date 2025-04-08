@@ -1,6 +1,7 @@
 import { AuthProvider } from "@/atoms/AuthContext";
 import "./globals.css";
 import Header from "@/components/Header";
+import TrackUserPath from "@/components/UserPathTracker";
 
 export default function RootLayout({
   children,
@@ -11,6 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider>
+          <TrackUserPath />
           <Header />
           {children}
         </AuthProvider>
