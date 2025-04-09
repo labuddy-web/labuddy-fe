@@ -30,7 +30,8 @@ const Page = () => {
             setTokensInCookie(access_token, refresh_token);
 
             // "/" 또는 "/path"로 redirect
-            const path = localStorage.getItem("path") || "";
+            const path =
+              localStorage.getItem("path") == "searching" ? "searching" : "";
             router.push(`/${path}`);
             localStorage.removeItem("path");
 
