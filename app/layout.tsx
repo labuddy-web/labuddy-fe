@@ -14,7 +14,7 @@ export default function RootLayout({
       <head>
         {/* GA4 gtag.js 불러오기 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}`}
           strategy="afterInteractive"
         />
         {/* GA4 설정 스크립트 */}
@@ -23,7 +23,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXX');
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}');
           `}
         </Script>
       </head>
