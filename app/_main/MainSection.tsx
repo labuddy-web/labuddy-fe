@@ -38,16 +38,14 @@ const MainSection = () => {
       });
 
       if (response.status >= 200 && response.status < 300) {
+        router.push("/searching");
         console.log("파일 업로드 성공", response.data);
-        alert("파일 업로드 성공에 성공하였습니다.");
 
         // sessionId를 localStorage에 저장
         localStorage.setItem(
           "sessionId",
           JSON.stringify(response.data.session_id)
         );
-
-        router.push("/searching");
       } else {
         console.error("파일 업로드 실패:", response.statusText);
         alert("파일 업로드에 실패하였습니다.");
