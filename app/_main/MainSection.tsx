@@ -3,18 +3,13 @@
 import { axiosInstance } from "@/api/axios";
 import UploadIcon from "@/components/icons/UploadIcon";
 import { Label } from "flowbite-react";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 const MainSection = () => {
   const [file, setFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-
-  useEffect(() => {
-    if (file) {
-      setFile(file);
-    }
-  }, [file]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -22,8 +17,23 @@ const MainSection = () => {
     }
   };
 
+  const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const droppedFile = e.dataTransfer.files?.[0];
+    if (droppedFile && droppedFile.type === "application/pdf") {
+      setFile(droppedFile);
+    } else {
+      alert("PDF 파일만 업로드할 수 있습니다.");
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   const handleUpload = async () => {
-    console.log("업로드할 파일:", file);
     if (!file) {
       alert("파일을 선택하세요");
       return;
@@ -33,15 +43,9 @@ const MainSection = () => {
     formData.append("file", file);
 
     try {
-      const response = await axiosInstance.post("/analyze/upload", formData, {
-        headers: {},
-      });
-
+      const response = await axiosInstance.post("/analyze/upload", formData);
       if (response.status >= 200 && response.status < 300) {
         router.push("/searching");
-        console.log("파일 업로드 성공", response.data);
-
-        // sessionId를 localStorage에 저장
         localStorage.setItem(
           "sessionId",
           JSON.stringify(response.data.session_id)
@@ -78,30 +82,41 @@ const MainSection = () => {
         </div>
       </div>
 
-      <Label className="flex flex-col items-center justify-center w-[760px] max-w-full h-[120px] border-2 border-white border-dashed rounded-lg cursor-pointer bg-transparent dark:bg-transparent dark:border-white">
+      <Label
+        className="flex flex-col items-center justify-center w-[760px] max-w-full h-[120px] border-2 border-white border-dashed rounded-lg cursor-pointer bg-transparent dark:bg-transparent dark:border-white"
+        onClick={() => fileInputRef.current?.click()}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+      >
         {!file && (
           <div className="flex flex-col items-center justify-center">
             <UploadIcon />
             <p className="text-sm text-white dark:text-white font-semibold">
-              Click to upload
+              Click or drag and drop a PDF to upload
             </p>
           </div>
         )}
         {file && (
-          <button
-            onClick={handleUpload}
-            className="mt-4 px-6 py-2 bg-blue/70 hover:bg-blue/90 text-white text-2xl rounded-lg cursor-pointer"
-          >
-            start search
-          </button>
+          <div className="flex flex-col items-center justify-center gap-4">
+            <p className="text-sm text-white">{file.name}</p>
+            <button
+              onClick={handleUpload}
+              className="px-6 py-2 bg-blue/70 hover:bg-blue/90 text-white text-2xl rounded-lg cursor-pointer"
+            >
+              Start search
+            </button>
+          </div>
         )}
+      </Label>
+      {!file && (
         <input
+          ref={fileInputRef}
           type="file"
           className="hidden"
           accept="application/pdf"
-          onChange={(e) => handleFileChange(e)}
+          onChange={handleFileChange}
         />
-      </Label>
+      )}
     </section>
   );
 };
