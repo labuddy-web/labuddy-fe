@@ -83,10 +83,18 @@ const ResultTable = () => {
     const storedPaperName = localStorage.getItem("paperName");
     const storedResults = localStorage.getItem("searchResults");
 
-    if (storedSessionId && storedPaperName && storedResults) {
-      setSessionId(JSON.parse(storedSessionId));
-      setPaperName(JSON.parse(storedPaperName));
-      setResults(JSON.parse(storedResults));
+    if (
+      storedSessionId !== null &&
+      storedPaperName !== null &&
+      storedResults !== null
+    ) {
+      try {
+        setSessionId(JSON.parse(storedSessionId));
+        setPaperName(JSON.parse(storedPaperName));
+        setResults(JSON.parse(storedResults));
+      } catch (error) {
+        console.error("JSON 파싱 중 오류 발생:", error);
+      }
     }
   }, [isLoggedIn, router]);
 
