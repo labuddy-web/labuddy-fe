@@ -115,9 +115,13 @@ const ResultTable = () => {
         {/* login 유도 blur */}
         {!isLoggedIn && (
           <div
-            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-64px)]"
+            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-68px)]"
             style={{ minHeight: tableHeight }}
           >
+            {/* blur 처리용 배경 */}
+            <div className="absolute z-50 w-full h-full backdrop-blur-sm bg-white/30" />
+
+            {/* 버튼 콘텐츠 */}
             <Link href={"/login"}>
               <button
                 className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]"
@@ -131,7 +135,6 @@ const ResultTable = () => {
                 <ArrowRightIcon />
               </button>
             </Link>
-            <div className="absolute flex z-50 w-full h-full bg-white blur-sm" />
           </div>
         )}
 
