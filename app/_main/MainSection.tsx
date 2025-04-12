@@ -64,20 +64,15 @@ const MainSection = () => {
     <section className="flex w-full bg-labuddy px-[32px] lg:px-[120px] xl:px-[320px] py-[120px] xl:py-[240px] text-white flex-col justify-center items-center gap-[120px] text-center">
       <div className="flex flex-col justify-center items-center gap-[20px]">
         <div className="flex flex-col justify-center items-center">
-          <p className="font-bold text-2xl md:text-3xl lg:text-4xl">LabBuddy</p>
           <p className="font-bold text-xl md:text-3xl lg:text-4xl">
-            : Extract <span className="font-black">Reagent & Equipment</span>{" "}
-            Info from Research Papers
+            논문에서 사용된 시약/기구 정보 자동 추출 AI 서비스, 랩버디
           </p>
         </div>
         <div className="flex flex-col justify-center items-center text-sm lg:text-base">
+          <p>실험할 시간도 부족한데, 논문 읽는데 시간을 낭하고 계신가요?</p>
           <p>
-            Short on time for experiments and spending too much of it reading
-            papers?
-          </p>
-          <p>
-            Just upload a PDF and get reagent and equipment information from the
-            paper in just 3 seconds!
+            PDF만 업로드하고 논문에서 사용된 시약/기구 정보를 3초 만에
+            확인해보세요!
           </p>
         </div>
       </div>
@@ -92,7 +87,7 @@ const MainSection = () => {
           <div className="flex flex-col items-center justify-center">
             <UploadIcon />
             <p className="text-sm text-white dark:text-white font-semibold">
-              Click or drag and drop a PDF to upload
+              PDF 업로드 또는 끌어다놓기
             </p>
           </div>
         )}
@@ -101,9 +96,9 @@ const MainSection = () => {
             <p className="text-sm text-white">{file.name}</p>
             <button
               onClick={handleUpload}
-              className="px-6 py-2 bg-blue/70 hover:bg-blue/90 text-white text-2xl rounded-lg cursor-pointer"
+              className="px-6 py-2 bg-yellow/70 hover:bg-yellow/90 text-white text-2xl rounded-lg cursor-pointer"
             >
-              Start search
+              논문 검색하기
             </button>
           </div>
         )}
