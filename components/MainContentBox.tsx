@@ -8,7 +8,6 @@ interface MainContentBoxProps {
 }
 
 interface DetailContentBoxProps {
-  title: ReactNode | null;
   content: ReactNode;
   img: StaticImageData;
 }
@@ -23,11 +22,7 @@ export const MainContentBox = ({ title, content }: MainContentBoxProps) => {
   );
 };
 
-export const DetailContentBox = ({
-  title,
-  content,
-  img,
-}: DetailContentBoxProps) => {
+export const DetailContentBox = ({ content, img }: DetailContentBoxProps) => {
   return (
     <div className="flex flex-col h-auto w-auto sm:w-[calc((100%-48px)/3)] justify-center items-center gap-[12px] sm:gap-[20px] text-center">
       <Image
@@ -37,7 +32,6 @@ export const DetailContentBox = ({
         className="h-[84px] sm:h-[140px]"
       />
       <div>
-        {title && <div className="text-xs lg:text-sm font-bold">{title}</div>}
         <div className="text-xs lg:text-sm font-light">{content}</div>
       </div>
     </div>
