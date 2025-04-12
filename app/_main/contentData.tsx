@@ -83,8 +83,7 @@ export const solveProblemsData: ContentItem = {
   title: <p>이 모든 문제, 한 번에 해결하고 싶지 않으세요?</p>,
   content: (
     <p>
-      시약/기구 검색은 랩버디에 맡기고
-      <br />
+      시약/기구 검색은 랩버디에 맡기고{" "}
       <span className="font-bold">연구에만 집중하세요!</span>
     </p>
   ),
