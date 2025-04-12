@@ -8,6 +8,7 @@ interface MainContentBoxProps {
 }
 
 interface DetailContentBoxProps {
+  className: string;
   content: ReactNode;
   img: StaticImageData;
 }
@@ -22,17 +23,25 @@ export const MainContentBox = ({ title, content }: MainContentBoxProps) => {
   );
 };
 
-export const DetailContentBox = ({ content, img }: DetailContentBoxProps) => {
+export const DetailContentBox = ({
+  className,
+  content,
+  img,
+}: DetailContentBoxProps) => {
   return (
-    <div className="flex flex-col h-auto w-auto sm:w-[calc((100%-48px)/3)] justify-center items-center gap-[12px] sm:gap-[20px] text-center">
+    <div
+      className={`flex h-auto w-full justify-start items-center gap-[12px] sm:gap-[20px] text-center ${className}`}
+    >
       <Image
         alt="img"
         src={img}
-        style={{ width: "auto" }}
-        className="h-[84px] sm:h-[140px]"
+        style={{ height: "auto" }}
+        className="w-[140px] md:w-[200px] lg:w-[320px]"
       />
       <div>
-        <div className="text-xs lg:text-sm font-light">{content}</div>
+        <div className="flex text-base sm:text-xl lg:text-2xl font-medium">
+          {content}
+        </div>
       </div>
     </div>
   );

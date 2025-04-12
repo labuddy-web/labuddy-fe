@@ -1,11 +1,13 @@
 import { MissionContentBox } from "@/components/MainContentBox";
 import { ourMission, footer } from "./contentData";
 import DoYouKnow from "./doYouKnow";
+import Struggling from "./struggling";
 
 const ContentSection = () => {
   return (
     <section className="font-roca flex flex-col w-full h-auto justify-center items-center">
       <DoYouKnow />
+      <Struggling />
       <div className="flex w-full h-auto border-4 rounded-xl border-labuddy py-[40px] px-[16px] justify-center items-center">
         <MissionContentBox
           title={ourMission.title}

@@ -37,11 +37,12 @@ export const doYouKnowData: ContentItem = {
 export const strugglingData: ContentItem = {
   title: <p>이런 점, 힘들지 않으셨나요?</p>,
   content: (
-    <div className="flex sm:flex-row flex-col w-auto h-auto justify-center items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
+    <div className="flex flex-col w-full h-auto items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
       <DetailContentBox
+        className="flex-col md:flex-row "
         content={
           <p>
-            논문에서 필요한 시약/기구 정보를 찾는데
+            논문에서 필요한 시약/기구 정보를 찾는데{" "}
             <span className="font-bold text-blue">
               시간이 너무 오래 걸린다.
             </span>
@@ -50,6 +51,7 @@ export const strugglingData: ContentItem = {
         img={struggling1}
       />
       <DetailContentBox
+        className="flex-col md:flex-row-reverse"
         content={
           <p>
             논문에서 시약/기구{" "}
@@ -60,11 +62,12 @@ export const strugglingData: ContentItem = {
         img={struggling2}
       />
       <DetailContentBox
+        className="flex-col md:flex-row "
         content={
           <p>
             논문 속 시약/기구 정보가{" "}
             <span className="font-bold text-blue">
-              브랜드별로 정리되지 않아
+              브랜드 별로 정리되지 않아
             </span>{" "}
             혼란스럽다.
           </p>
@@ -93,6 +96,7 @@ export const whyLabuddyData: ContentItem = {
   content: (
     <div className="flex sm:flex-row flex-col w-auto h-auto justify-center items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
       <DetailContentBox
+        className=""
         content={
           <p>
             논문에서 <span className="font-bold text-blue">시약/기구 정보</span>
@@ -104,6 +108,7 @@ export const whyLabuddyData: ContentItem = {
         img={labuddy1}
       />
       <DetailContentBox
+        className=""
         content={
           <p>
             <span className="font-bold text-blue">브랜드 별로 정리</span>된
@@ -114,6 +119,7 @@ export const whyLabuddyData: ContentItem = {
         img={labuddy2}
       />
       <DetailContentBox
+        className=""
         content={
           <p>
             시약/기구 <span className="font-bold text-blue">구매까지</span>
