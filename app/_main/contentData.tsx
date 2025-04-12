@@ -15,23 +15,26 @@ export interface ContentItem {
   image: StaticImageData | null;
 }
 
-export const doYouKnow: ContentItem = {
+export const doYouKnowData: ContentItem = {
   title: <p>그거 아세요?</p>,
   content: (
     <p>
       연구보다 논문 읽는데 더 많은 시간을 쓰고 있다는 사실.
       <br />
+      <br />
       연구자들은 필요한{" "}
       <span className="font-bold text-blue">시약/기구 정보</span>를 찾기 위해
+      <br />
       매년 <span className="font-bold text-blue">수백 시간</span>을 논문 검색 및
       읽기에 소비하고 있습니다.
+      <br />
       <br />이 시간을 절약하여 더 중요한 연구에 집중해야 하지 않을까요?
     </p>
   ),
   image: doYouKnowImg,
 };
 
-export const struggling: ContentItem = {
+export const strugglingData: ContentItem = {
   title: <p>이런 점, 힘들지 않으셨나요?</p>,
   content: (
     <div className="flex sm:flex-row flex-col w-auto h-auto justify-center items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
@@ -70,9 +73,10 @@ export const struggling: ContentItem = {
       />
     </div>
   ),
+  image: null,
 };
 
-export const solveProblems: ContentItem = {
+export const solveProblemsData: ContentItem = {
   title: <p>이 모든 문제, 한 번에 해결하고 싶지 않으세요?</p>,
   content: (
     <p>
@@ -84,7 +88,7 @@ export const solveProblems: ContentItem = {
   image: solveProblemImg,
 };
 
-export const whyLabuddy: ContentItem = {
+export const whyLabuddyData: ContentItem = {
   title: <p>랩버디를 사용하면 이런 점이 좋습니다</p>,
   content: (
     <div className="flex sm:flex-row flex-col w-auto h-auto justify-center items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
@@ -120,7 +124,7 @@ export const whyLabuddy: ContentItem = {
       />
     </div>
   ),
-  image: solveProblemImg,
+  image: null,
 };
 /*
 export const contentList: ContentItem[] = [
