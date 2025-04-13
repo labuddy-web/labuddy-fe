@@ -1,27 +1,11 @@
 import { ReactNode } from "react";
-import CheckBadgeIcon from "./icons/CheckBadgeIcon";
 import Image, { StaticImageData } from "next/image";
-
-interface MainContentBoxProps {
-  title: ReactNode;
-  content: ReactNode;
-}
 
 interface DetailContentBoxProps {
   className: string;
   content: ReactNode;
   img: StaticImageData;
 }
-
-export const MainContentBox = ({ title, content }: MainContentBoxProps) => {
-  return (
-    <div className="flex flex-col h-auto justify-center items-center gap-[20px] text-center">
-      <CheckBadgeIcon />
-      <div className="text-lg lg:text-xl font-black">{title}</div>
-      <div className="text-xs lg:text-sm font-light">{content}</div>
-    </div>
-  );
-};
 
 export const DetailContentBox = ({
   className,
@@ -43,15 +27,6 @@ export const DetailContentBox = ({
           {content}
         </div>
       </div>
-    </div>
-  );
-};
-
-export const MissionContentBox = ({ title, content }: MainContentBoxProps) => {
-  return (
-    <div className="flex flex-col h-auto justify-center items-center gap-[20px] text-center">
-      <div className="text-base lg:text-xl font-medium">{title}</div>
-      <div className="text-xs lg:text-lg font-light">{content}</div>
     </div>
   );
 };

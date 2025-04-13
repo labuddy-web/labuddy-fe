@@ -1,9 +1,9 @@
-import { footer } from "./contentData";
 import DoYouKnow from "./doYouKnow";
 import Struggling from "./struggling";
 import SolveProblem from "./solveProblem";
 import WhyLabuddy from "./whyLabuddy";
 import Mission from "./mission";
+import LetsStart from "./letsStart";
 
 const ContentSection = () => {
   return (
@@ -13,9 +13,7 @@ const ContentSection = () => {
       <SolveProblem />
       <WhyLabuddy />
       <Mission />
-      <div className="text-xl lg:text-3xl text-labuddy font-extrabold text-center">
-        {footer}
-      </div>
+      <LetsStart />
     </section>
   );
 };

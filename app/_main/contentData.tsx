@@ -250,9 +250,9 @@ export const contentList: ContentItem[] = [
 */
 
 export const ourMission: ContentItem = {
-  title: <p className="font-semibold">랩버디의 미션</p>,
+  title: <p>랩버디의 미션</p>,
   content: (
-    <p className="font-semibold">
+    <p>
       “우리는 연구자들이 연구에만 집중할 수 있도록 지원합니다.”
       <br />
       <br />
@@ -265,9 +265,10 @@ export const ourMission: ContentItem = {
 };
 
 export const footer: ReactNode = (
-  <p>
-    지금 바로 시작하세요!
-    <br />
-    연구는 더 효율적으로, 시약/기구 찾기는 더 빠르게!
-  </p>
+  <div className="flex flex-col gap-[16px]">
+    <p className="text-2xl md:text-4xl lg:text-5xl font-black">
+      지금 바로 시작하세요!
+    </p>
+    <p>연구는 더 효율적으로, 시약/기구 찾기는 더 빠르게!</p>
+  </div>
 );
