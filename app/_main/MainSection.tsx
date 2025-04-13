@@ -61,7 +61,7 @@ const MainSection = () => {
   };
 
   return (
-    <section className="flex w-full bg-labuddy px-[32px] lg:px-[120px] xl:px-[320px] py-[120px] xl:py-[240px] text-white flex-col justify-center items-center gap-[120px] text-center">
+    <section className="flex w-full h-auto bg-labuddy px-[32px] lg:px-[120px] xl:px-[320px] py-[120px] xl:py-[240px] text-white flex-col justify-center items-center gap-[80px] sm:gap-[120px] text-center">
       <div className="flex flex-col justify-center items-center gap-[20px]">
         <div className="flex flex-col justify-center items-center">
           <p className="font-bold text-xl md:text-3xl lg:text-4xl">
@@ -78,7 +78,7 @@ const MainSection = () => {
       </div>
 
       <Label
-        className="flex flex-col items-center justify-center w-[760px] max-w-full h-[120px] border-2 border-white border-dashed rounded-lg cursor-pointer bg-transparent dark:bg-transparent dark:border-white"
+        className="flex flex-col items-center justify-center w-[760px] max-w-full h-auto sm:h-[120px] border-2 border-white border-dashed rounded-lg cursor-pointer bg-transparent dark:bg-transparent dark:border-white max-sm:py-[28px] max-sm:px-[16px]"
         onClick={() => fileInputRef.current?.click()}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
