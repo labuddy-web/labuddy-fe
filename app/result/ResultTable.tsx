@@ -109,7 +109,7 @@ const ResultTable = () => {
         <p className="text-lg md:text-2xl lg:text-3xl">
           {paperName}에 대한 검색 결과
         </p>
-        {!isLoggedIn && (
+        {isLoggedIn && (
           <button
             onClick={() => handleDownload(sessionId)}
             className="flex bg-orange-400 rounded-xl sm:rounded-2xl shadow-2xl py-[12px] px-[64px]"
