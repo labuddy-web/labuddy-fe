@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import DownloadIcon from "@/components/icons/DownloadIcon";
 import {
   Table,
   TableHeader,
@@ -106,17 +105,19 @@ const ResultTable = () => {
 
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] ">
-      <div className="flex flex-row w-full justify-center items-center gap-[20px]">
+      <div className="flex flex-col w-full justify-center items-center gap-[40px]">
         <p className="text-lg md:text-2xl lg:text-3xl">
           {paperName}에 대한 검색 결과
         </p>
-        {isLoggedIn && (
-          <p
-            className="cursor-pointer"
+        {!isLoggedIn && (
+          <button
             onClick={() => handleDownload(sessionId)}
+            className="flex bg-orange-400 rounded-xl sm:rounded-2xl shadow-2xl py-[12px] px-[64px]"
           >
-            <DownloadIcon />
-          </p>
+            <p className="text-base md:text-lg lg:text-xl font-extrabold text-center text-white">
+              검색결과 다운로드
+            </p>
+          </button>
         )}
       </div>
       <div className="relative w-full h-auto text-center">
