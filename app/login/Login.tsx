@@ -20,7 +20,7 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full max-w-[700px] h-[calc(100vh-84px)] sm:h-auto mt-[120px] px-[32px] sm:px-[118px] py-[58px] gap-[24px] sm:gap-[48px] sm:rounded-3xl text-center bg-white border-t-2 sm:border-2 border-gray-400">
+    <div className="flex flex-col justify-center items-center w-full max-w-[700px] h-[calc(100vh-84px)] sm:h-auto sm:mt-[120px] px-[32px] sm:px-[118px] py-[58px] gap-[24px] sm:gap-[48px] sm:rounded-3xl text-center bg-white border-t-2 sm:border-2 border-gray-400">
       <Image src={labuddy_logo} alt="labuddy" className="w-[172px] h-auto" />
       <p className="font-semibold text-3xl sm:text-5xl text-gray-800">
         랩버디 시작하기
