@@ -1,9 +1,9 @@
-import { MissionContentBox } from "@/components/MainContentBox";
-import { ourMission, footer } from "./contentData";
+import { footer } from "./contentData";
 import DoYouKnow from "./doYouKnow";
 import Struggling from "./struggling";
 import SolveProblem from "./solveProblem";
 import WhyLabuddy from "./whyLabuddy";
+import Mission from "./mission";
 
 const ContentSection = () => {
   return (
@@ -12,12 +12,7 @@ const ContentSection = () => {
       <Struggling />
       <SolveProblem />
       <WhyLabuddy />
-      <div className="flex w-full h-auto border-4 rounded-xl border-labuddy py-[40px] px-[16px] justify-center items-center">
-        <MissionContentBox
-          title={ourMission.title}
-          content={ourMission.content}
-        />
-      </div>
+      <Mission />
       <div className="text-xl lg:text-3xl text-labuddy font-extrabold text-center">
         {footer}
       </div>

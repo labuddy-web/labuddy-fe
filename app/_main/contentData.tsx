@@ -8,6 +8,7 @@ import solveProblemImg from "@/public/main/solveProblem.svg";
 import labuddy1 from "@/public/main/labuddy1.svg";
 import labuddy2 from "@/public/main/labuddy2.svg";
 import labuddy3 from "@/public/main/labuddy3.svg";
+import mission from "@/public/main/mission.svg";
 import line from "@/public/line.svg";
 import Image, { StaticImageData } from "next/image";
 export interface ContentItem {
@@ -82,7 +83,7 @@ export const strugglingData: ContentItem = {
 
 export const solveProblemsData: ContentItem = {
   title: (
-    <p>
+    <div>
       <div className="hidden sm:block">
         <p>이 모든 문제, 한 번에 해결하고 싶지 않으세요?</p>
       </div>
@@ -90,7 +91,7 @@ export const solveProblemsData: ContentItem = {
         <p className="text-base font-medium">이 모든 문제, </p>
         <p>한 번에 해결하고 싶지 않으세요?</p>
       </div>
-    </p>
+    </div>
   ),
   content: (
     <div>
@@ -260,7 +261,7 @@ export const ourMission: ContentItem = {
       과학의 발전을 가속화하는 것이 우리의 목표입니다.
     </p>
   ),
-  image: null,
+  image: mission,
 };
 
 export const footer: ReactNode = (
