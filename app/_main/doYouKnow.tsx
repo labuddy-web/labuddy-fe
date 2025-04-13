@@ -4,7 +4,7 @@ import { doYouKnowData } from "./contentData";
 const DoYouKnow = () => {
   return (
     <div className="flex flex-col w-full bg-gray-200 h-auto justify-center items-center px-[32px] lg:px-[120px] xl:px-[320px] py-[80px] md:py-[180px] gap-[32px] md:gap-[80px]">
-      <div className="text-2xl md:text-4xl lg:text-5xl font-black text-center">
+      <div className="text-xl md:text-4xl lg:text-5xl font-black text-center">
         {doYouKnowData.title}
       </div>
       <div className="flex flex-col md:flex-row w-full h-auto gap-[40px] md:gap-[20px] lg:gap-[80px] justify-center items-center">
