@@ -8,8 +8,8 @@ const Mission = () => {
         <Image
           src={ourMission.image}
           alt="Mission Background"
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: "cover" }}
           className="z-0"
         />
       )}
