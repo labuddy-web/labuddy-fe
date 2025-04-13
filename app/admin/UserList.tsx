@@ -50,7 +50,7 @@ const UserList = ({ users }: { users: string | undefined }) => {
           </TableHeader>
           <TableBody items={userList}>
             {(item) => (
-              <TableRow key={item.phone_number} className="h-[60px]">
+              <TableRow key={item.email} className="h-[60px]">
                 {(columnKey) => (
                   <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
                     {getKeyValue(item, columnKey)}
