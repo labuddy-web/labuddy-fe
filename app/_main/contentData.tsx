@@ -8,7 +8,8 @@ import solveProblemImg from "@/public/main/solveProblem.svg";
 import labuddy1 from "@/public/main/labuddy1.svg";
 import labuddy2 from "@/public/main/labuddy2.svg";
 import labuddy3 from "@/public/main/labuddy3.svg";
-import { StaticImageData } from "next/image";
+import line from "@/public/line.svg";
+import Image, { StaticImageData } from "next/image";
 export interface ContentItem {
   title: ReactNode;
   content: ReactNode;
@@ -109,9 +110,9 @@ export const solveProblemsData: ContentItem = {
 export const whyLabuddyData: ContentItem = {
   title: <p>랩버디를 사용하면 이런 점이 좋습니다</p>,
   content: (
-    <div className="flex sm:flex-row flex-col w-auto h-auto justify-center items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
+    <div className="flex flex-col w-full h-auto items-center gap-[40px] sm:gap-[80px] lg:gap-[100px]">
       <DetailContentBox
-        className=""
+        className="flex-col md:flex-row-reverse"
         content={
           <p>
             논문에서 <span className="font-bold text-blue">시약/기구 정보</span>
@@ -122,8 +123,13 @@ export const whyLabuddyData: ContentItem = {
         }
         img={labuddy1}
       />
+      <Image
+        alt=""
+        src={line}
+        className="h-[100px] md:h-[160px] md:-mt-20 md:-mb-20"
+      />
       <DetailContentBox
-        className=""
+        className="flex-col md:flex-row"
         content={
           <p>
             <span className="font-bold text-blue">브랜드 별로 정리</span>된
@@ -133,8 +139,13 @@ export const whyLabuddyData: ContentItem = {
         }
         img={labuddy2}
       />
+      <Image
+        alt=""
+        src={line}
+        className="h-[100px] md:h-[160px] md:-mt-20 md:-mb-20"
+      />
       <DetailContentBox
-        className=""
+        className="flex-col md:flex-row-reverse"
         content={
           <p>
             시약/기구 <span className="font-bold text-blue">구매까지</span>

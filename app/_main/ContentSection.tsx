@@ -3,6 +3,7 @@ import { ourMission, footer } from "./contentData";
 import DoYouKnow from "./doYouKnow";
 import Struggling from "./struggling";
 import SolveProblem from "./solveProblem";
+import WhyLabuddy from "./whyLabuddy";
 
 const ContentSection = () => {
   return (
@@ -10,6 +11,7 @@ const ContentSection = () => {
       <DoYouKnow />
       <Struggling />
       <SolveProblem />
+      <WhyLabuddy />
       <div className="flex w-full h-auto border-4 rounded-xl border-labuddy py-[40px] px-[16px] justify-center items-center">
         <MissionContentBox
           title={ourMission.title}
