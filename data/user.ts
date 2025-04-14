@@ -1,5 +1,6 @@
 interface Row {
   key: string;
+  name: string;
   email: string;
   source_path: string;
 }
@@ -10,11 +11,16 @@ interface Column {
 }
 
 export interface User {
+  name: string;
   email: string;
   source_path: string;
 }
 
 export const columns: Column[] = [
+  {
+    key: "name",
+    label: "NAME",
+  },
   {
     key: "email",
     label: "EMAIL",
