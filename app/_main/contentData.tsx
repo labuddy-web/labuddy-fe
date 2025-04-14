@@ -26,7 +26,6 @@ export const doYouKnowData: ContentItem = {
       <br />
       연구자들은 필요한{" "}
       <span className="font-bold text-blue">시약/기구 정보</span>를 찾기 위해
-      <br />
       매년 <span className="font-bold text-blue">수백 시간</span>을 논문 검색 및
       읽기에 소비하고 있습니다.
       <br />
