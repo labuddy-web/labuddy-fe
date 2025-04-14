@@ -1,7 +1,7 @@
 const UploadIcon = () => {
   return (
     <svg
-      className="w-8 h-8 mb-4 text-white dark:text-white"
+      className="w-12 h-12 mb-4 text-white dark:text-white"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

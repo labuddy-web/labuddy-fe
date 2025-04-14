@@ -86,7 +86,7 @@ const MainSection = () => {
         {!file && (
           <div className="flex flex-col items-center justify-center">
             <UploadIcon />
-            <p className="text-sm text-white dark:text-white font-semibold">
+            <p className="text-lg text-white dark:text-white font-semibold">
               PDF 업로드 또는 끌어다놓기
             </p>
           </div>

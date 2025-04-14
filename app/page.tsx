@@ -21,7 +21,7 @@ export default function Home() {
       <ContentSection />
       <button
         onClick={scrollToMainSection}
-        className="flex bg-orange-400 rounded-xl sm:rounded-2xl shadow-2xl py-[16px] sm:py-[24px] px-[64px] mb-[120px] xl:mb-[240px]"
+        className="flex bg-yellow/70 hover:bg-yellow rounded-xl sm:rounded-2xl shadow-2xl py-[16px] sm:py-[24px] px-[64px] mb-[120px] xl:mb-[240px]"
       >
         <p className="text-xl md:text-2xl lg:text-4xl font-extrabold text-center text-white">
           시약/기구 정보 추출하기
