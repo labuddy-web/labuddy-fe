@@ -147,7 +147,7 @@ const ResultTable = () => {
                     <p>
                       3초 만에 회원가입하고
                       <br />
-                      <span className="font-bold">결과 확인하기</span>
+                      <span className="font-bold">상세정보 확인하기</span>
                     </p>
                     <ArrowRightIcon />
                   </div>
