@@ -115,7 +115,7 @@ const ResultTable = () => {
         {isLoggedIn && (
           <button
             onClick={() => handleDownload(sessionId)}
-            className="flex bg-orange-400 rounded-xl sm:rounded-2xl shadow-2xl py-[12px] px-[64px]"
+            className="flex bg-orange-400 rounded-xl sm:rounded-2xl shadow-2xl py-[12px] px-[64px] cursor-pointer"
           >
             <p className="text-base md:text-lg lg:text-xl font-extrabold text-center text-white">
               검색결과 다운로드
