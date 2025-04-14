@@ -69,7 +69,9 @@ const ResultTable = () => {
   const isLoggedIn = useIsLoggedInByCookie();
 
   const tableRef = useRef<HTMLTableElement>(null);
+  const catalogRef = useRef<HTMLTableElement>(null);
   const [tableHeight, setTableHeight] = useState(0);
+  const [cataglogWidth, setCataglogWidth] = useState(0);
   const [ctaNum, setCtaNum] = useState(0);
 
   const [sessionId, setSessionId] = useState<string>();
@@ -102,9 +104,16 @@ const ResultTable = () => {
     if (tableRef.current) {
       const height = tableRef.current.clientHeight - 68;
       setTableHeight(height);
-      setCtaNum(Math.floor(height / 400)); // 80px 단위로 반복한다고 가정
+      setCtaNum(Math.floor(height / 400));
     }
   }, [tableRef.current]);
+
+  useEffect(() => {
+    if (catalogRef.current) {
+      const width = catalogRef.current.clientWidth + 12;
+      setCataglogWidth(width);
+    }
+  }, [catalogRef.current]);
 
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] ">
@@ -127,12 +136,9 @@ const ResultTable = () => {
         {/* login 유도 blur */}
         {!isLoggedIn && (
           <div
-            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-68px)] cursor-pointer"
-            style={{ minHeight: tableHeight }}
+            className="absolute flex right-2 sm:right-[24px] bottom-0 cursor-pointer"
+            style={{ minHeight: tableHeight, width: cataglogWidth }}
           >
-            {/* blur 처리용 배경 */}
-            <div className="absolute z-50 w-full h-full backdrop-blur-sm bg-white/30 cursor-pointer" />
-
             {/* 버튼 콘텐츠 */}
             <Link href={"/login"}>
               <button
@@ -161,16 +167,15 @@ const ResultTable = () => {
         <div ref={tableRef}>
           <Table
             aria-label="Example table with dynamic content"
-            className="relative w-full h-auto pt-[8px] px-[24px] pb-[24px] bg-white rounded-xl drop-shadow-xl table-fixed"
+            className="relative w-full h-auto pt-[8px] px-[24px] pb-[24px] bg-white rounded-xl drop-shadow-xl"
           >
             <TableHeader columns={columns}>
               {(column) => (
                 <TableColumn
                   key={column.key}
                   className="text-sm md:text-base text-center px-0.5 h-[60px] border-b-2 border-b-gray-200"
-                  style={{ maxWidth: "calc((100% - 48px) / 3)" }}
                 >
-                  {column.key === "walla" && !isLoggedIn ? null : column.label}
+                  {column.label}
                 </TableColumn>
               )}
             </TableHeader>
@@ -179,6 +184,14 @@ const ResultTable = () => {
                 <TableRow key={index} className="h-[60px]">
                   {(columnKey) => (
                     <TableCell className=" text-xs md:text-sm text-center px-0.5">
+                      {/* blur 처리용 배경 */}
+                      {columnKey === "catalog"
+                        ? !isLoggedIn && (
+                            <div ref={catalogRef}>
+                              <div className="absolute z-50 top-0 w-full h-[60px] backdrop-blur-sm bg-white/30 cursor-pointer" />
+                            </div>
+                          )
+                        : null}
                       {columnKey === "walla"
                         ? isLoggedIn && (
                             <Link
