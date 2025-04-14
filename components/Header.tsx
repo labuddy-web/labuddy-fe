@@ -42,13 +42,13 @@ const Header = () => {
           onClick={handleLogout}
         >
           <UserIcon />
-          <p className="text-red-500">log out</p>
+          <p className="text-red-500">로그아웃</p>
         </div>
       ) : (
         <Link href={"/login"}>
           <div className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black">
             <UserIcon />
-            <p>log in</p>
+            <p>로그인</p>
           </div>
         </Link>
       )}
