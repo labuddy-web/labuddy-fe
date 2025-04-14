@@ -31,6 +31,6 @@ export const columns: Column[] = [
   },
   {
     key: "walla",
-    label: "",
+    label: "가격",
   },
 ];
