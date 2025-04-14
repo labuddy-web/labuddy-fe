@@ -116,7 +116,7 @@ const ResultTable = () => {
   }, [catalogRef.current]);
 
   return (
-    <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] ">
+    <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] break-keep ">
       <div className="flex flex-col w-full justify-center items-center gap-[40px]">
         <p className="text-lg md:text-2xl lg:text-3xl">
           {paperName}에서 사용된 시약 및 기구
