@@ -127,16 +127,16 @@ const ResultTable = () => {
         {/* login 유도 blur */}
         {!isLoggedIn && (
           <div
-            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-68px)]"
+            className="absolute flex w-[calc((100%-48px)/3-12px)] right-0 bottom-0 h-[calc(100%-68px)] cursor-pointer"
             style={{ minHeight: tableHeight }}
           >
             {/* blur 처리용 배경 */}
-            <div className="absolute z-50 w-full h-full backdrop-blur-sm bg-white/30" />
+            <div className="absolute z-50 w-full h-full backdrop-blur-sm bg-white/30 cursor-pointer" />
 
             {/* 버튼 콘텐츠 */}
             <Link href={"/login"}>
               <button
-                className="absolute flex flex-col z-60 w-full h-full justify-between items-center text-center py-40"
+                className="absolute flex flex-col z-60 w-full h-full justify-between items-center text-center py-40 cursor-pointer"
                 onClick={handlePath}
               >
                 {Array.from({ length: ctaNum }).map((_, index) => (
@@ -161,13 +161,14 @@ const ResultTable = () => {
         <div ref={tableRef}>
           <Table
             aria-label="Example table with dynamic content"
-            className="relative w-full h-auto pt-[8px] px-[24px] pb-[24px] bg-white rounded-xl drop-shadow-xl"
+            className="relative w-full h-auto pt-[8px] px-[24px] pb-[24px] bg-white rounded-xl drop-shadow-xl table-fixed"
           >
             <TableHeader columns={columns}>
               {(column) => (
                 <TableColumn
                   key={column.key}
                   className="text-sm md:text-base text-center px-0.5 h-[60px] border-b-2 border-b-gray-200"
+                  style={{ maxWidth: "calc((100% - 48px) / 3)" }}
                 >
                   {column.label}
                 </TableColumn>
@@ -177,7 +178,7 @@ const ResultTable = () => {
               {results.map((item, index) => (
                 <TableRow key={index} className="h-[60px]">
                   {(columnKey) => (
-                    <TableCell className="w-auto text-xs md:text-sm text-center px-0.5">
+                    <TableCell className=" text-xs md:text-sm text-center px-0.5">
                       {columnKey === "walla"
                         ? isLoggedIn && (
                             <Link
