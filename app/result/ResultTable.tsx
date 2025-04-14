@@ -70,6 +70,7 @@ const ResultTable = () => {
 
   const tableRef = useRef<HTMLTableElement>(null);
   const [tableHeight, setTableHeight] = useState(0);
+  const [ctaNum, setCtaNum] = useState(0);
 
   const [sessionId, setSessionId] = useState<string>();
   const [paperName, setPaperName] = useState<string>();
@@ -99,15 +100,17 @@ const ResultTable = () => {
 
   useEffect(() => {
     if (tableRef.current) {
-      setTableHeight(tableRef.current.clientHeight - 68);
+      const height = tableRef.current.clientHeight - 68;
+      setTableHeight(height);
+      setCtaNum(Math.floor(height / 400)); // 80px 단위로 반복한다고 가정
     }
-  }, []);
+  }, [tableRef.current]);
 
   return (
     <div className="flex flex-col w-full z-20 text-center gap-[20px] md:gap-[40px] ">
       <div className="flex flex-col w-full justify-center items-center gap-[40px]">
         <p className="text-lg md:text-2xl lg:text-3xl">
-          {paperName}에 대한 검색 결과
+          {paperName}에서 사용된 시약 및 기구
         </p>
         {isLoggedIn && (
           <button
@@ -133,15 +136,22 @@ const ResultTable = () => {
             {/* 버튼 콘텐츠 */}
             <Link href={"/login"}>
               <button
-                className="absolute flex flex-col z-60 w-full h-full justify-center items-center text-center gap-[20px]"
+                className="absolute flex flex-col z-60 w-full h-full justify-between items-center text-center py-40"
                 onClick={handlePath}
               >
-                <p>
-                  Sign up in just 3 seconds
-                  <br />
-                  <span className="font-bold">Get your results instantly.</span>
-                </p>
-                <ArrowRightIcon />
+                {Array.from({ length: ctaNum }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col z-70 w-full h-auto justify-center items-center text-center gap-[20px]"
+                  >
+                    <p>
+                      3초 만에 회원가입하고
+                      <br />
+                      <span className="font-bold">결과 확인하기</span>
+                    </p>
+                    <ArrowRightIcon />
+                  </div>
+                ))}
               </button>
             </Link>
           </div>
