@@ -127,7 +127,7 @@ const ResultTable = () => {
         {/* login 유도 blur */}
         {!isLoggedIn && (
           <div
-            className="absolute flex w-[calc((100%-48px)/3-12px)] right-0 bottom-0 h-[calc(100%-68px)] cursor-pointer"
+            className="absolute flex w-[calc((100%-48px)/3)] right-0 bottom-0 h-[calc(100%-68px)] cursor-pointer"
             style={{ minHeight: tableHeight }}
           >
             {/* blur 처리용 배경 */}
