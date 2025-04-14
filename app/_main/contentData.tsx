@@ -43,36 +43,38 @@ export const strugglingData: ContentItem = {
       <DetailContentBox
         className="flex-col md:flex-row "
         content={
-          <p>
-            논문에서 필요한 시약/기구 정보를 찾는데{" "}
-            <span className="font-bold text-blue">
-              시간이 너무 오래 걸린다.
-            </span>
-          </p>
+          <div>
+            <p>논문에서 필요한 시약/기구 정보를 찾는데</p>
+            <p className="font-bold text-blue">시간이 너무 오래 걸린다.</p>
+          </div>
         }
         img={struggling1}
       />
       <DetailContentBox
         className="flex-col md:flex-row-reverse"
         content={
-          <p>
-            논문에서 시약/기구{" "}
-            <span className="font-bold text-blue">정보가 명확하지 않아</span>{" "}
-            추가 검색이 필요하다.
-          </p>
+          <div>
+            <p>
+              논문에서 시약/기구{" "}
+              <span className="font-bold text-blue">정보가 명확하지 않아</span>
+            </p>
+            <p>추가 검색이 필요하다.</p>
+          </div>
         }
         img={struggling2}
       />
       <DetailContentBox
         className="flex-col md:flex-row "
         content={
-          <p>
-            논문 속 시약/기구 정보가{" "}
-            <span className="font-bold text-blue">
-              브랜드 별로 정리되지 않아
-            </span>{" "}
-            혼란스럽다.
-          </p>
+          <div>
+            <p>논문 속 시약/기구 정보가</p>
+            <p>
+              <span className="font-bold text-blue">
+                브랜드 별로 정리되지 않아
+              </span>{" "}
+              혼란스럽다.
+            </p>
+          </div>
         }
         img={struggling3}
       />

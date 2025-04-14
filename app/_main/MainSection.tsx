@@ -61,7 +61,7 @@ const MainSection = () => {
   };
 
   return (
-    <section className="flex w-full h-auto bg-labuddy px-[32px] lg:px-[120px] xl:px-[320px] py-[120px] xl:py-[240px] text-white flex-col justify-center items-center gap-[80px] sm:gap-[120px] text-center">
+    <section className="flex w-full h-auto bg-labuddy px-[32px] lg:px-[120px] xl:px-[320px] py-[120px] xl:py-[240px] text-white flex-col justify-center items-center gap-[80px] sm:gap-[120px] text-center break-keep">
       <div className="flex flex-col justify-center items-center gap-[20px]">
         <div className="flex flex-col justify-center items-center">
           <p className="font-bold text-xl md:text-3xl lg:text-4xl">
@@ -69,7 +69,7 @@ const MainSection = () => {
           </p>
         </div>
         <div className="flex flex-col justify-center items-center text-sm lg:text-base">
-          <p>실험할 시간도 부족한데, 논문 읽는데 시간을 낭하고 계신가요?</p>
+          <p>실험할 시간도 부족한데, 논문 읽는데 시간을 낭비하고 계신가요?</p>
           <p>
             PDF만 업로드하고 논문에서 사용된 시약/기구 정보를 3초 만에
             확인해보세요!

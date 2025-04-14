@@ -7,7 +7,7 @@ import LetsStart from "./letsStart";
 
 const ContentSection = () => {
   return (
-    <section className="font-roca flex flex-col w-full h-auto justify-center items-center">
+    <section className="font-roca flex flex-col w-full h-auto justify-center items-center whitespace-normal break-keep">
       <DoYouKnow />
       <Struggling />
       <SolveProblem />
