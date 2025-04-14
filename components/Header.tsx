@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import labuddy_logo from "@/public/logo.svg";
-import UserIcon from "./icons/UserIcon";
 import Link from "next/link";
 import { authInstance } from "@/api/axios";
 import Cookie from "js-cookie";
@@ -41,13 +40,11 @@ const Header = () => {
           className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black"
           onClick={handleLogout}
         >
-          <UserIcon />
           <p className="text-red-500">로그아웃</p>
         </div>
       ) : (
         <Link href={"/login"}>
           <div className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black">
-            <UserIcon />
             <p>로그인</p>
           </div>
         </Link>
