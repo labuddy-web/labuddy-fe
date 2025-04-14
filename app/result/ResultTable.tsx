@@ -188,11 +188,12 @@ const ResultTable = () => {
                             <Link
                               href={"https://walla.my/v/ja2h7cK5qXFaI6nJjFn2"}
                               target="_blank"
+                              className="cursor-pointer"
                             >
-                              <button className="hidden sm:block text-white bg-orange-400 rounded-xl py-[4px] px-[8px]">
+                              <button className="hidden sm:block text-white bg-orange-400 rounded-xl py-[4px] px-[8px] cursor-pointer">
                                 최저가 알아보기
                               </button>
-                              <button className="block sm:hidden text-orange-400">
+                              <button className="block sm:hidden text-orange-400 cursor-pointer">
                                 <ArrowTopRightIcon />
                               </button>
                             </Link>
