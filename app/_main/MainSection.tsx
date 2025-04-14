@@ -98,7 +98,7 @@ const MainSection = () => {
               onClick={handleUpload}
               className="px-6 py-2 bg-yellow/70 hover:bg-yellow/90 text-white text-2xl rounded-lg cursor-pointer"
             >
-              논문 검색하기
+              시약/기구 정보 추출하기
             </button>
           </div>
         )}
