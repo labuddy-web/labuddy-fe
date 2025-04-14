@@ -9,7 +9,7 @@ import { useAuth } from "@/atoms/AuthContext";
 const Page = () => {
   const { login } = useAuth();
   const router = useRouter();
-  const [path, setPath] = useState<string>("");
+  const [path, setPath] = useState<string>("unknown");
 
   useEffect(() => {
     const storedPath = localStorage.getItem("path") || "unknown";
