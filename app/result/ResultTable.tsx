@@ -170,7 +170,11 @@ const ResultTable = () => {
                   className="text-sm md:text-base text-center px-0.5 h-[60px] border-b-2 border-b-gray-200"
                   style={{ maxWidth: "calc((100% - 48px) / 3)" }}
                 >
-                  {column.label}
+                  {column.key === "walla"
+                    ? isLoggedIn
+                      ? column.label
+                      : null
+                    : column.label}
                 </TableColumn>
               )}
             </TableHeader>
@@ -185,10 +189,10 @@ const ResultTable = () => {
                               href={"https://walla.my/v/ja2h7cK5qXFaI6nJjFn2"}
                               target="_blank"
                             >
-                              <button className="hidden sm:block text-blue underline">
-                                check LOWEST PRICE
+                              <button className="hidden sm:block text-white bg-orange-400 rounded-xl py-[4px] px-[8px]">
+                                최저가 알아보기
                               </button>
-                              <button className="block sm:hidden text-blue underline">
+                              <button className="block sm:hidden text-orange-400">
                                 <ArrowTopRightIcon />
                               </button>
                             </Link>
