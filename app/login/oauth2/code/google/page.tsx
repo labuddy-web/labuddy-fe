@@ -1,46 +1,44 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { axiosInstance } from "@/api/axios";
-import { setGoogleTokenInCookie, setTokensInCookie } from "@/api/token";
+import { setTokensInCookie } from "@/api/token";
 import { useAuth } from "@/atoms/AuthContext";
 
 const Page = () => {
   const { login } = useAuth();
   const router = useRouter();
+  const [path, setPath] = useState<string>("unknown");
 
   useEffect(() => {
+    const storedPath = localStorage.getItem("path") || "unknown";
     const query = new URLSearchParams(window.location.search);
     const code = query.get("google_access_token");
+    setPath(storedPath);
 
     const handleAuth = async () => {
       try {
         const response = await axiosInstance.post("/auth/login", {
           google_access_token: code,
+          source_path: path,
         });
 
         if (response.status >= 200 && response.status < 300) {
-          if (response.data.is_user) {
-            login();
+          login();
 
-            const { access_token, refresh_token } = response.data;
+          const { access_token, refresh_token } = response.data;
 
-            // 쿠키에 토큰 저장
-            setTokensInCookie(access_token, refresh_token);
+          // 쿠키에 토큰 저장
+          setTokensInCookie(access_token, refresh_token);
 
-            // "/" 또는 "/path"로 redirect
-            const path = localStorage.getItem("path") || "";
-            router.push(`/${path}`);
-            localStorage.removeItem("path");
+          // "/" 또는 "/path"로 redirect
+          const path =
+            localStorage.getItem("path") == "searching" ? "searching" : "";
+          router.push(`/${path}`);
+          localStorage.removeItem("path");
 
-            router.refresh();
-          } else {
-            // 쿠키에 구글 토큰 저장
-            setGoogleTokenInCookie(code ? code : "");
-
-            router.push("/login/info"); // 추가 정보 입력 페이지로 이동
-          }
+          router.refresh();
         }
       } catch (error) {
         console.error("Authentication failed:", error);

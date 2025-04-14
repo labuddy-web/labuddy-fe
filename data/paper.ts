@@ -7,8 +7,8 @@ export interface Paper {
 interface Row {
   company: string;
   reagent: string;
-  walla: string;
   catalog: string;
+  walla: string;
 }
 
 interface Column {
@@ -26,11 +26,11 @@ export const columns: Column[] = [
     label: "REAGENT",
   },
   {
-    key: "walla",
-    label: "",
-  },
-  {
     key: "catalog",
     label: "CATALOG",
+  },
+  {
+    key: "walla",
+    label: "",
   },
 ];
