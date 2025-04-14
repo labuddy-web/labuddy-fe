@@ -170,11 +170,7 @@ const ResultTable = () => {
                   className="text-sm md:text-base text-center px-0.5 h-[60px] border-b-2 border-b-gray-200"
                   style={{ maxWidth: "calc((100% - 48px) / 3)" }}
                 >
-                  {column.key === "walla"
-                    ? isLoggedIn
-                      ? column.label
-                      : null
-                    : column.label}
+                  {!(column.key === "walla" && !isLoggedIn) && column.label}
                 </TableColumn>
               )}
             </TableHeader>
