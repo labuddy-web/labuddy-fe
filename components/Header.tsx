@@ -37,14 +37,14 @@ const Header = () => {
       </Link>
       {isLoggedIn ? (
         <div
-          className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black"
+          className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black cursor-pointer"
           onClick={handleLogout}
         >
           <p className="text-red-500">로그아웃</p>
         </div>
       ) : (
         <Link href={"/login"}>
-          <div className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black">
+          <div className="w-auto h-[40px] flex flex-row items-center gap-[24px] text-black cursor-pointer">
             <p>로그인</p>
           </div>
         </Link>
