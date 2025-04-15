@@ -86,7 +86,7 @@ const MainSection = () => {
         {!file && (
           <div className="flex flex-col items-center justify-center">
             <UploadIcon />
-            <p className="text-sm text-white dark:text-white font-semibold">
+            <p className="text-lg text-white dark:text-white font-semibold">
               PDF 업로드 또는 끌어다놓기
             </p>
           </div>
@@ -98,7 +98,7 @@ const MainSection = () => {
               onClick={handleUpload}
               className="px-6 py-2 bg-yellow/70 hover:bg-yellow/90 text-white text-2xl rounded-lg cursor-pointer"
             >
-              논문 검색하기
+              시약/기구 정보 추출하기
             </button>
           </div>
         )}

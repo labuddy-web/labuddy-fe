@@ -19,15 +19,15 @@ interface Column {
 export const columns: Column[] = [
   {
     key: "company",
-    label: "COMPANY",
+    label: "제조사",
   },
   {
     key: "reagent",
-    label: "REAGENT",
+    label: "시약 및 기구",
   },
   {
     key: "catalog",
-    label: "CATALOG",
+    label: "카탈로그 번호",
   },
   {
     key: "walla",

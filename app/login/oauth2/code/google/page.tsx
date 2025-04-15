@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { axiosInstance } from "@/api/axios";
 import { setTokensInCookie } from "@/api/token";
 import { useAuth } from "@/atoms/AuthContext";
@@ -9,19 +9,18 @@ import { useAuth } from "@/atoms/AuthContext";
 const Page = () => {
   const { login } = useAuth();
   const router = useRouter();
-  const [path, setPath] = useState<string>("unknown");
 
   useEffect(() => {
-    const storedPath = localStorage.getItem("path") || "unknown";
     const query = new URLSearchParams(window.location.search);
     const code = query.get("google_access_token");
-    setPath(storedPath);
 
     const handleAuth = async () => {
+      const sourcePath = localStorage.getItem("path") || "unknown";
+
       try {
         const response = await axiosInstance.post("/auth/login", {
           google_access_token: code,
-          source_path: path,
+          source_path: sourcePath,
         });
 
         if (response.status >= 200 && response.status < 300) {
@@ -29,14 +28,12 @@ const Page = () => {
 
           const { access_token, refresh_token } = response.data;
 
-          // 쿠키에 토큰 저장
           setTokensInCookie(access_token, refresh_token);
 
-          // "/" 또는 "/path"로 redirect
-          const path =
-            localStorage.getItem("path") == "searching" ? "searching" : "";
-          router.push(`/${path}`);
+          // redirect to stored path or home
+          const redirectPath = sourcePath === "searching" ? "/searching" : "/";
           localStorage.removeItem("path");
+          router.push(redirectPath);
 
           router.refresh();
         }

@@ -69,6 +69,9 @@ const AdminPage = () => {
           </NavbarContent>
         </Navbar>
       </div>
+
+      <div className="w-full border-b border-gray-300 my-4" />
+
       <div className="flex w-full">
         {/* 활성화된 탭에 맞는 컴포넌트 렌더링 */}
         {activeTab === "users" && <UserList users={users} />}

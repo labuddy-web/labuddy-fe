@@ -59,11 +59,9 @@ const SearchingPage = () => {
   return (
     <div className="flex flex-col w-full h-[calc(100vh-84px)] justify-center items-center bg-labuddy text-white text-center gap-[20px]">
       <BeakerIcon />
-      <p className="font-bold text-2xl md:text-3xl lg:text-4xl">
-        searching ...
-      </p>
+      <p className="font-bold text-2xl md:text-3xl lg:text-4xl">추출 중 ...</p>
       <p className="text-sm lg:text-base">
-        LabBuddy is extracting info from your paper!
+        랩버디가 논문에서 시약/기구 정보를 추출 중입니다!
       </p>
     </div>
   );
