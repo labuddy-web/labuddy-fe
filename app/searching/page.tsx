@@ -14,8 +14,6 @@ const SearchingPage = () => {
       const response = await authInstance.get(`/analyze/result/${sessionId}`);
 
       if (response.status >= 200 && response.status < 300) {
-        console.log("검색 성공", response.data);
-
         // paperName를 localStorage에 저장
         localStorage.setItem(
           "paperName",

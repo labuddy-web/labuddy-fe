@@ -24,8 +24,6 @@ const AdminPage = () => {
         const response = await authInstance.get("/admin/summary");
 
         if (response.status >= 200 && response.status < 300) {
-          console.log("검색 성공", response.data);
-
           const users = response.data?.users ?? [];
           const papers = response.data?.papers ?? [];
 
